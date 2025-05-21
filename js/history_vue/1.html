@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 循环
+        // 块级作用域
+        for(var i=0;i<10;i++){
+            setTimeout(function(){
+                console.log(i); // 输出10个10
+            },1000)
+        }
+
+        /*
+        1. var 的函数作用域
+            var 声明的变量不具备块级作用域（如 for 循环的花括号 {} 内），它的作用域是整个函数或全局环境。
+            在这个例子里，var i 是在全局作用域或者包含该 for 循环的函数作用域中声明的。
+            每一次循环迭代都不会创建新的 i 变量，所有的 setTimeout 回调函数共享的是同一个 i 变量。
+        2. setTimeout 的异步执行
+            setTimeout 是异步函数，它的回调函数会被放入任务队列，要等到当前调用栈清空之后才会执行。
+            在这个 for 循环里，10 个 setTimeout 会立即依次执行（间隔时间极短），并且它们的回调函数都会延迟大约 1000ms 后执行。
+            当这些回调函数开始执行的时候，for 循环早就已经结束了，此时 i 的值已经变为 10（因为循环条件是 i < 10，当 i 达到 10 时循环才会终止）。
+        */
+
+        for(let i=0; i<10; i++){
+            setTimeout(function(){
+                console.log(i); // 输出 0, 1, 2, ..., 9
+            }, 1000);
+        }
+        /*let 具有块级作用域，每次循环迭代都会创建一个新的 i 变量，每个回调函数捕获的是不同迭代中 i 的值。*/
+
+        for(var i=0; i<10; i++){
+            (function(j){
+                setTimeout(function(){
+                    console.log(j); // 输出 0, 1, 2, ..., 9
+                }, 1000);
+            })(i);
+        }
+        /*
+        利用立即执行函数创建一个新的作用域，把当前 i 的值传递给内部变量 j，这样每个回调函数就会捕获不同的 j 值。
+        */
+
+      
+    </script>
+</body>
+</html>

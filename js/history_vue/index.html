@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>朋友们</title>
+</head>
+<body>
+    <script>
+        let age=18;
+        const friends = [
+            {
+                name:'吴纯阳',
+                hometown:'上饶',
+                college:'湖南工业大学'
+            },
+            {
+                name:'谢平',
+                hometown:'赣州'
+            }
+        ]; 
+        friends.push({
+        name:'邓文凯',hometown:'宜春'
+        }); // 给数组中添加元素
+        const newFriends = friends; //指向同一片地址
+        newFriends.push(
+            {name:'宋昀润',hometown:'宜春'}
+        )
+        //模拟栈或队列
+       newFriends.unshift({name:'严婷婷'}); // 给数组中添加元素(放到最前面)
+       console.log(friends);
+       console.log(age); // 输出undefined
+    </script>
+</body>
+</html>

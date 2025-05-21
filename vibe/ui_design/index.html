@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电商 App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF0000',
+                        secondary: '#FF6B6B'
+                    },
+                    borderRadius: {
+                        'none': '0px',
+                        'sm': '2px',
+                        DEFAULT: '4px',
+                        'md': '8px',
+                        'lg': '12px',
+                        'xl': '16px',
+                        '2xl': '20px',
+                        '3xl': '24px',
+                        'full': '9999px',
+                        'button': '4px'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <div class="w-[375px] min-h-[762px] mx-auto relative bg-white">
+        <div class="fixed top-0 left-0 right-0 z-50 bg-primary text-white h-[44px] flex items-center justify-between px-4">
+            <div class="text-lg font-medium">首页</div>
+            <div class="flex items-center space-x-4">
+                <i class="fas fa-search text-lg w-[20px] h-[20px] flex items-center justify-center"></i>
+                <i class="fas fa-bell text-lg w-[20px] h-[20px] flex items-center justify-center"></i>
+            </div>
+        </div>
+        <div class="pt-[44px] pb-[60px]">
+            <div class="px-4 py-3">
+                <img src="https://ai-public.mastergo.com/ai/img_res/37c53dbb92b543a64de250cc6be77d45.jpg" class="w-full h-[160px] rounded-lg object-cover" alt="Banner">
+            </div>
+
+            <div class="grid grid-cols-5 gap-2 px-4 mb-4">
+                <div class="flex flex-col items-center">
+                    <div class="w-[48px] h-[48px] rounded-full overflow-hidden mb-1">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/9f82498b555dc7c28b0643d07f762a27.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs text-gray-600 whitespace-nowrap">数码产品</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-[48px] h-[48px] rounded-full overflow-hidden mb-1">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/275df6160279c39671f72c22e4fe2c26.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs text-gray-600 whitespace-nowrap">时尚服饰</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-[48px] h-[48px] rounded-full overflow-hidden mb-1">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/e5792f3d0c6708520d9e527872d2b741.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs text-gray-600 whitespace-nowrap">美食餐饮</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-[48px] h-[48px] rounded-full overflow-hidden mb-1">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/20c6976f376b25aa96a377a12a67da1a.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs text-gray-600 whitespace-nowrap">美妆护肤</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="w-[48px] h-[48px] rounded-full overflow-hidden mb-1">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/e09032fbdab4eb955fedb74b5decc406.jpg" class="w-full h-full object-cover">
+                    </div>
+                    <span class="text-xs text-gray-600 whitespace-nowrap">家居生活</span>
+                </div>
+            </div>
+
+            <div class="px-4">
+                <div class="text-lg font-medium mb-3">热门商品</div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/8fd7c3c15bc2010f688c08a7769c6354.jpg" class="w-full h-[160px] object-cover" alt="Product">
+                        <div class="p-2">
+                            <div class="text-sm font-medium mb-1">iPhone 14 Pro Max</div>
+                            <div class="text-xs text-gray-500 mb-2">256GB 暗紫色</div>
+                            <div class="text-primary font-medium">¥ 9,999</div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <img src="https://ai-public.mastergo.com/ai/img_res/5ad0c015569d427cc25fc93dfc75390c.jpg" class="w-full h-[160px] object-cover" alt="Product">
+                        <div class="p-2">
+                            <div class="text-sm font-medium mb-1">AirPods Pro 2</div>
+                            <div class="text-xs text-gray-500 mb-2">主动降噪 无线充电</div>
+                            <div class="text-primary font-medium">¥ 1,899</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fixed bottom-0 left-0 right-0 h-[60px] bg-white border-t border-gray-200 grid grid-cols-5 items-center px-2">
+            <div class="flex flex-col items-center">
+                <i class="fas fa-home text-primary w-[24px] h-[24px] flex items-center justify-center"></i>
+                <span class="text-xs text-primary mt-1">首页</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-play w-[24px] h-[24px] flex items-center justify-center text-gray-400"></i>
+                <span class="text-xs text-gray-400 mt-1">视频</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-comment w-[24px] h-[24px] flex items-center justify-center text-gray-400"></i>
+                <span class="text-xs text-gray-400 mt-1">消息</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-shopping-bag w-[24px] h-[24px] flex items-center justify-center text-gray-400"></i>
+                <span class="text-xs text-gray-400 mt-1">购物</span>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-user w-[24px] h-[24px] flex items-center justify-center text-gray-400"></i>
+                <span class="text-xs text-gray-400 mt-1">我的</span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
