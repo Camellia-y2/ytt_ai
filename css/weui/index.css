@@ -1,0 +1,24 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #ededed;
+    height: 100%;
+}
+.weui-page{
+   padding: 18px;
+}
+.weui-page__header{
+    padding: 20px;
+}
+.weui-page__title{
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.weui-page__desc{
+   font-size: 12px;
+   color: #574b4b;
+}
