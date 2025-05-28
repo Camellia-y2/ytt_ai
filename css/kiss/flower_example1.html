@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简单五瓣花</title>
+    <style>
+        .flower {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+            margin: 100px auto;
+        }
+
+        .petal {
+            position: absolute;
+            top: 35px;
+            left: 35px;
+            width: 30px;
+            height: 30px;
+            background: #ff69b4;
+            border-radius: 0 50%;
+        }
+
+        .petal:nth-child(1) {
+            transform: rotate(0deg) translate(30px);
+        }
+
+        .petal:nth-child(2) {
+            transform: rotate(45deg) translate(30px);
+        }
+
+        .petal:nth-child(3) {
+            transform: rotate(90deg) translate(30px);
+        }
+
+        .petal:nth-child(4) {
+            transform: rotate(135deg) translate(30px);
+        }
+
+        .petal:nth-child(5) {
+            transform: rotate(180deg) translate(30px);
+        }
+        .petal:nth-child(6) {
+            transform: rotate(225deg) translate(30px);
+        }
+        .petal:nth-child(7) {
+            transform: rotate(270deg) translate(30px);
+        }
+        .petal:nth-child(8) {
+            transform: rotate(315deg) translate(30px);
+        }
+
+        .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 35px;
+            height: 35px;
+            background: #ffd700;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div class="flower">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="center"></div>
+    </div>
+</body>
+</html>

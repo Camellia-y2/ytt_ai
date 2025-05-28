@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>kiss</title>
+  <style>
+    * {
+      top: 0;
+      left: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: pink;
+    }
+
+    .container {
+      /* background-color: chartreuse; */
+      width: 450px;
+      height: 450px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .face {
+      display: inline-block;
+      width: 200px;
+      height: 200px;
+      background-color: azure;
+      border: 13px black solid;
+      position: relative;
+      top: 25%;
+      left: 5%;
+      border-radius: 50%;
+    }
+
+    .eye1 {
+      width: 30px;
+      height: 35px;
+      position: absolute;
+      border-radius: 50%;
+      border-top: 0px solid;
+    }
+
+    .l_eye1 {
+      top: 30%;
+      left: 35%;
+      border-bottom: 8px black solid;
+    }
+
+    .r_eye1 {
+      top: 30%;
+      left: 75%;
+      border-bottom: 8px black solid;
+    }
+
+    /* 右边脸的眼睛 */
+    .eye2 {
+      width: 30px;
+      height: 35px;
+      position: absolute;
+      border-radius: 50%;
+      top: 36%;
+      border-bottom: 0px solid;
+    }
+
+    .l_eye2 {
+      left: 10%;
+      border-top: 8px black solid;
+    }
+
+    .r_eye2 {
+      left: 47%;
+      border-top: 8px black solid;
+    }
+
+    /* 腮红 */
+    .blush1 {
+      width: 28px;
+      height: 15px;
+      background-color: rgba(255, 0, 0, 0.662);
+      border-radius: 50%;
+      position: absolute;
+      top: 55%;
+    }
+
+    .l_blush1 {
+      left: 20%;
+    }
+
+    .r_blush1 {
+      left: 90%;
+    }
+
+    .blush2 {
+      width: 20px;
+      height: 17px;
+      background-color: rgba(255, 0, 0, 0.662);
+      border-radius: 50%;
+      position: absolute;
+      top: 55%;
+    }
+
+    i {
+      color: rgb(118, 109, 109);
+      position: absolute;
+      top: -1px;
+      font-size: x-small;
+    }
+
+    .l_blush2 {
+      left: 5%;
+    }
+
+    .r_blush2 {
+      left: 60%;
+    }
+
+    /* 嘴巴 */
+    .mouth {
+      border-radius: 50%;
+      border-top: 0px solid;
+      border-bottom: 10px black solid;
+      position: absolute;
+    }
+
+    .l_mouth {
+      width: 50px;
+      height: 38px;
+      top: 50%;
+      left: 48%;
+    }
+
+    .r_mouth {
+      width: 42px;
+      height: 38px;
+      top: 50%;
+      left: 25%;
+    }
+
+    /* 花头饰 */
+    .flower {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      /* background-color: aqua; */
+      top: -100px;
+      left: 16px;
+    }
+
+    .petal {
+      position: absolute;
+      top: 37px;
+      left: 36px;
+      width: 27px;
+      height: 27px;
+      background: #ff69b4;
+      border-radius: 0 50%;
+      border: 2px #f18ac3 solid;
+    }
+
+    .petal:nth-child(1) {
+      transform: rotate(0deg) translate(30px);
+    }
+
+    .petal:nth-child(2) {
+      transform: rotate(45deg) translate(30px);
+    }
+
+    .petal:nth-child(3) {
+      transform: rotate(90deg) translate(30px);
+    }
+
+    .petal:nth-child(4) {
+      transform: rotate(135deg) translate(30px);
+    }
+
+    .petal:nth-child(5) {
+      transform: rotate(180deg) translate(30px);
+    }
+
+    .petal:nth-child(6) {
+      transform: rotate(225deg) translate(30px);
+    }
+
+    .petal:nth-child(7) {
+      transform: rotate(270deg) translate(30px);
+    }
+
+    .petal:nth-child(8) {
+      transform: rotate(315deg) translate(30px);
+    }
+
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 37px;
+      height: 37px;
+      background: #ffea00;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 左边的脸 -->
+    <div class="face l_face">
+      <!-- 眼睛 -->
+      <div class="eye1 l_eye1"></div>
+      <div class="eye1 r_eye1"></div>
+      <!-- 腮红 -->
+      <div class="blush1 l_blush1"></div>
+      <div class="blush1 r_blush1"></div>
+      <!-- 嘴巴 -->
+      <div class="mouth l_mouth"></div>
+    </div>
+    <!-- 右边的脸 -->
+    <div class="face r_face">
+      <!-- 眼睛 -->
+      <div class="eye">
+        <div class="eye2 l_eye2"></div>
+        <div class="eye2 r_eye2"></div>
+      </div>
+      <!-- 腮红 -->
+      <div class="blush2 l_blush2"><i>| | |</i></div>
+      <div class="blush2 r_blush2"><i>| | |</i></div>
+      <!-- 嘴巴 -->
+      <div class="mouth r_mouth"></div>
+    </div>
+    <!-- 花朵头饰 -->
+    <div class="flower">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+    </div>
+  </div>
+  </div>
+
+</body>
+
+</html>
