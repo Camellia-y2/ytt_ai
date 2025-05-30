@@ -1,21 +1,31 @@
 /**
- * 
- * @param {number} total 
- * @param {number} num 
- * @returns {number[]}
+ * 微信红包随机分配算法
+ * @param {number} total - 总金额（单位：分）
+ * @param {number} num - 红包数量
+ * @returns {number[]} - 每个红包的金额数组
  */
-function hongbao(total,num) {
-    const arr=[];
-    let resAmount = total;//剩余金额
-    let resNum = num;//剩余个数
-    for(let i=0;i<num-1;i++){
-        //Math 包装类
-        let amount = Math.random(resAmount/resNum*2).toFixed(2);
-        resAmount -= amount;
-        resNum --;
-        arr.push(amount);
+function hongbao(total, num) {
+    const result = [];
+    let restAmount = total; // 剩余金额
+    let restNum = num;      // 剩余数量
+    
+    for (let i = 0; i < num - 1; i++) {
+        // 计算当前红包的最大可能金额：剩余金额/剩余数量×2
+        const max = (restAmount / restNum) * 2;
+        // 随机生成0到max之间的金额（向下取整）
+        const amount = Math.max(1, Math.floor(Math.random() * max));
+        // 更新剩余金额和数量
+        restAmount -= amount;
+        restNum--;
+        // 将当前红包金额存入结果数组
+        result.push(amount);
     }
-    arr.push(restAmount.toFixed(2));//最后一个红包直接分配
-    //公平性 平均性 随机性
-    return arr;
+    
+    // 最后一个红包直接分配剩余金额
+    result.push(restAmount);
+    return result;
 }
+
+// 使用示例
+const amounts = hongbao(1000, 10); // 1000元发10个红包
+console.log(amounts); 
