@@ -13,7 +13,7 @@ function hongbao(total, num) {
         // 计算当前红包的最大可能金额：剩余金额/剩余数量×2
         const max = (restAmount / restNum) * 2;
         // 随机生成0到max之间的金额（向下取整）
-        const amount = Math.max(1, Math.floor(Math.random() * max));
+        const amount = Math.max(1, Math.floor(Math.random() * max));//除去生成0的情况，当为0时选1
         // 更新剩余金额和数量
         restAmount -= amount;
         restNum--;
