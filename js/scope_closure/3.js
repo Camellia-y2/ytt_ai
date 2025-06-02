@@ -1,5 +1,10 @@
 function bar() {
     var myName = "极客世界"
+    // var test=10  //有这句时，结果输出10，没有这句时，结果输出1
+    //当前 if 块词法环境 → 无 test
+    // bar 函数词法环境 → 有 test1，无 test
+    // bar 函数变量环境 → 无 test （这里）
+    // 全局词法环境 → 找到 test: 1
     let test1 = 100
     if (1) {
         let myName = "Chrome浏览器"
@@ -22,3 +27,5 @@ var myName = "极客时间"
 let myAge = 10
 let test = 1
 foo() // 1
+
+
