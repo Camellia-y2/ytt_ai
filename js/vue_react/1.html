@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生JS</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* table{
+            width: 120px;
+            text-align: center;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td,th{
+            border: 1px solid black;
+        } */
+    </style>
+</head>
+<body>
+    <!-- 挂载点 -->
+     <div class="container">
+        <table id="friends" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>家乡</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>李晓伟</td>
+                    <td>抚州</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+    <script>
+        // 挂载点 html 由 js 动态生成
+        const tBody=document.querySelector('#friends tbody');
+        // JSON 数组
+        // DOM 编程 动态页面 数据
+        const friends=[
+        {
+            "name":"王子恒",
+            "hometwon":"上饶"
+        },
+        {
+            "name":"刘红",
+            "hometwon":"赣州"
+        },
+        ];
+        // html 字符串 = 数组 类型转换 
+        // 数组方法 map 遍历数组 返回新数组 拼接字符串
+        tBody.innerHTML = friends.map(friend=>`
+             <tr>
+               <td>${friend.name}</td>
+               <td>${friend.hometwon}</td>
+            </tr>
+        `).join('');
+    </script>
+</body>
+</html>
