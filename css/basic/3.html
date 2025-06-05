@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>伪类选择器</title>
+    <style>
+
+        /* 1.行为伪类 */
+        /* 鼠标点击时 */
+        button:active{
+            background-color: green;
+            color: white;
+        }
+        /* 鼠标悬浮时 */
+        p:hover{
+            color: red;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        /* 伪元素选择器 */
+        ::selection{
+            background-color: yellow;
+            color:white;
+        }
+
+        /* 2.状态伪类 */
+        /* 聚焦 */
+        input:focus{
+            outline: none;
+            border: 2px solid blue;
+        }
+        /* 选中 */
+        input:checked{
+            background-color: green;
+        }
+        input:checked + label{
+            color: red;
+            font-weight: bold;
+        }
+
+        /* 3.结构伪类 */
+        /* 奇数 */
+        li:nth-child(odd){
+            background-color: lightgray;
+        }
+        /* 偶数 */
+        li:nth-child(even){
+            background-color: rgb(214, 89, 228);
+        }
+
+        /* 4.条件伪类 */
+        /* li:not()不是...的li */
+        li:not(:first-child){
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>伪类选择器示例</h1>
+        <button>点击我</button>
+        <p>鼠标悬浮</p>
+        <p>选中文本</p>
+
+        <input type="text" placeholder="输入框" autofocus>
+        <input type="checkbox" id="option1">
+        <label for="option1">选项一</label>
+        <input type="checkbox" checked id="option2">
+        <label for="checkbox">选项二</label>
+        <!-- ul>(li{列表$})*4 -->
+        <ul>
+            <li>列表1</li>
+            <li>列表2</li>
+            <li>列表3</li>
+            <li>列表4</li>
+        </ul>
+    </div>
+</body>
+</html>

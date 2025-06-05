@@ -23,7 +23,7 @@ function App() {
   },5000)
   return (
     <div>
-      <h1 class="title">{title}</h1>
+      <h1 className="title">{title}</h1>
       <table>
         <thead>
           <tr>
