@@ -1,0 +1,98 @@
+#board {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 2px;
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.tile {
+    width: 70px;
+    height: 70px;
+    background-size: cover;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.tile.selected {
+    transform: scale(0.9);
+    box-shadow: 0 0 10px yellow;
+}
+
+.game-info {
+    text-align: center;
+    font-size: 20px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+}
+
+
+/* 新增容器样式 */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: rgba(255,255,255,0.9);
+    border-radius: 15px;
+    box-shadow: 0 0 30px rgba(255,165,0,0.3);
+}
+
+.tile {
+    /* 修改原样式 */
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tile:hover {
+    transform: scale(1.1);
+    background: #ffeaa7;
+}
+
+/* 新增动画效果 */
+@keyframes pop-in {
+    0% { transform: scale(0); }
+    90% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.tile {
+    animation: pop-in 0.3s ease-out;
+}
+
+/* 游戏信息美化 */
+.game-info {
+    background: #ff7675;
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+/* 按钮美化 */
+button {
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255,105,180,0.3);
+}

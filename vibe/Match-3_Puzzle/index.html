@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI水果消消乐</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="startScreen">
+        <h1>选择难度</h1>
+        <button onclick="startGame('easy')">简单模式</button>
+        <button onclick="startGame('medium')">中等模式</button>
+        <button onclick="startGame('hard')">困难模式</button>
+    </div>
+    
+    <div id="gameScreen" style="display:none;">
+        <div class="game-info">
+            <span>得分: <span id="score">0</span></span>
+            <span>剩余步数: <span id="moves">0</span></span>
+        </div>
+        <div id="board"></div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
