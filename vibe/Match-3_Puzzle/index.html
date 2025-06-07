@@ -1,25 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>AI水果消消乐</title>
+    <title>🍉果缤纷消消乐</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="startScreen">
-        <h1>选择难度</h1>
-        <button onclick="startGame('easy')">简单模式</button>
-        <button onclick="startGame('medium')">中等模式</button>
-        <button onclick="startGame('hard')">困难模式</button>
+    <div class="background-decor">
+        <div class="bg-bubble bubble1"></div>
+        <div class="bg-bubble bubble2"></div>
+        <div class="bg-bubble bubble3"></div>
+        <div class="bg-bubble bubble4"></div>
     </div>
-    
-    <div id="gameScreen" style="display:none;">
-        <div class="game-info">
-            <span>得分: <span id="score">0</span></span>
-            <span>剩余步数: <span id="moves">0</span></span>
+    <h1 class="game-title animate__animated animate__bounce">🍉果缤纷消消乐🍎</h1>
+    <div class="game-frame animate__animated animate__fadeInUp">
+        <!-- 主页面 -->
+        <div id="mainMenu" class="game-page active">
+            <button class="cute-btn animate__animated animate__pulse" onclick="showDifficultyModal()">
+                <span class="btn-icon">🎮</span> 开始游戏
+            </button>
         </div>
-        <div id="board"></div>
+        <!-- 游戏页面 -->
+        <div id="gameScreen" class="game-page">
+            <div class="game-header">
+                <button class="cute-btn back-btn" onclick="confirmExit()">← 退出</button>
+                <div class="game-stats">
+                    <span>得分: <span id="score">0</span></span>
+                    <span>剩余步数: <span id="moves">0</span></span>
+                    <span>目标分数: <span id="target">0</span></span>
+                </div>
+            </div>
+            <div id="board"></div>
+            <!-- 小道具栏 -->
+            <div class="tools-bar">
+                <button id="shuffleBtn" class="cute-btn tool-btn" onclick="shuffleBoard()">
+                    <span class="btn-icon">🔀</span> 打乱棋盘
+                </button>
+                <span id="shuffleTip" class="tool-tip"></span>
+            </div>
+        </div>
+        <!-- 难度选择模态框 -->
+        <div id="difficultyModal" class="modal">
+            <div class="modal-content">
+                <h2>选择难度</h2>
+                <div class="difficulty-buttons">
+                    <button class="cute-btn difficulty-btn" onclick="startGame('easy')">
+                        <span class="fruit-icon">🍒</span> 简单模式
+                    </button>
+                    <button class="cute-btn" onclick="startGame('medium')">
+                        <span class="fruit-icon">🍋</span> 中等模式
+                    </button>
+                    <button class="cute-btn" onclick="startGame('hard')">
+                        <span class="fruit-icon">🍍</span> 困难模式
+                    </button>
+                </div>
+                <button class="cute-btn" onclick="closeDifficultyModal()">取消</button>
+            </div>
+        </div>
+        <!-- 退出确认模态框 -->
+        <div id="exitModal" class="modal">
+            <div class="modal-content">
+                <h2>确认退出</h2>
+                <p>您确定要退出游戏并返回主页面吗？</p>
+                <div class="modal-buttons">
+                    <button class="cute-btn" onclick="exitGame()">确认</button>
+                    <button class="cute-btn" onclick="closeExitModal()">取消</button>
+                </div>
+            </div>
+        </div>
+        <!-- 游戏结束模态框 -->
+        <div id="gameOverModal" class="modal">
+            <div class="modal-content" id="gameOverContent"></div>
+        </div>
     </div>
-
+    <!-- 音效 -->
+    <audio id="swapSound" src="swap.mp3"></audio>
+    <audio id="eliminateSound" src="eliminate.mp3"></audio>
+    <audio id="invalidSound" src="invalid.mp3"></audio>
+    <audio id="winSound" src="win.mp3"></audio>
+    <audio id="loseSound" src="lose.mp3"></audio>
     <script src="game.js"></script>
 </body>
 </html>
