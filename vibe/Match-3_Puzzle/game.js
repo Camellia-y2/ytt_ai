@@ -1,6 +1,7 @@
+// 难度与水果
 const difficulties = {
-    easy:   { moves: 30, target: 500 },
-    medium: { moves: 25, target: 800 },
+    easy:   { moves: 20, target: 500 },
+    medium: { moves: 20, target: 750 },
     hard:   { moves: 20, target: 1100 }
 };
 const FRUITS = {
@@ -17,11 +18,13 @@ let gameState = {
     selectedTile: null,
     board: [],
     size: 8,
-    shuffling: false
+    shuffling: false,
+    toolUsed: { shuffle: false, addStep: false, undo: false },
+    prevState: null // for undo
 };
 let gameIsOver = false;
 
-// 页面切换
+// -------- 页面与流程 --------
 function showDifficultyModal() {
     document.getElementById('difficultyModal').classList.add('active');
 }
@@ -41,7 +44,21 @@ function exitGame() {
     document.getElementById('mainMenu').classList.add('active');
 }
 
-// 开始游戏
+// 新增：游戏说明、关于我们模态框
+function showHelpModal() {
+    document.getElementById('helpModal').classList.add('active');
+}
+function closeHelpModal() {
+    document.getElementById('helpModal').classList.remove('active');
+}
+function showCreditsModal() {
+    document.getElementById('creditsModal').classList.add('active');
+}
+function closeCreditsModal() {
+    document.getElementById('creditsModal').classList.remove('active');
+}
+
+// ----------- 游戏主流程 ----------
 function startGame(difficulty) {
     gameState.difficulty = difficulty;
     gameState.score = 0;
@@ -49,9 +66,9 @@ function startGame(difficulty) {
     gameState.targetScore = difficulties[difficulty].target;
     gameState.selectedTile = null;
     gameIsOver = false;
-
-    // 设置棋盘尺寸
     gameState.size = { easy: 6, medium: 8, hard: 10 }[difficulty];
+    gameState.toolUsed = { shuffle: false, addStep: false, undo: false };
+    gameState.prevState = null;
 
     closeDifficultyModal();
     document.getElementById('mainMenu').classList.remove('active');
@@ -59,7 +76,7 @@ function startGame(difficulty) {
     document.getElementById('gameOverModal').classList.remove('active');
     generateBoard();
     updateUI();
-    updateShuffleBtn();
+    updateToolBtns();
 }
 
 // 生成棋盘（保证初始无三连）
@@ -92,7 +109,9 @@ function generateBoard() {
         tile.textContent = tiles[i];
         tile.addEventListener('click', onTileClick);
         boardEl.appendChild(tile);
+            
     }
+    
 }
 
 // 方块点击事件
@@ -108,10 +127,13 @@ function onTileClick(e) {
         const firstIndex = parseInt(gameState.selectedTile.dataset.index);
         if (isAdjacent(firstIndex, idx, size)) {
             if (isValidSwap(firstIndex, idx, size)) {
+                // 保存撤销状态
+                savePrevState(firstIndex, idx);
                 swapTiles(firstIndex, idx);
                 playAudio('swap');
                 gameState.movesLeft--;
-                gameState.score -= 10;
+                // 移除消耗分数的代码
+                // gameState.score -= 10;
                 updateUI();
                 setTimeout(() => {
                     if (checkMatches()) {
@@ -131,6 +153,17 @@ function onTileClick(e) {
         gameState.selectedTile.classList.remove('selected');
         gameState.selectedTile = null;
     }
+}
+
+function savePrevState(i1, i2) {
+    // 只保存撤销一次的快照
+    gameState.prevState = {
+        board: [...gameState.board],
+        score: gameState.score,
+        movesLeft: gameState.movesLeft,
+        first: i1,
+        second: i2
+    };
 }
 
 // 判断相邻
@@ -228,9 +261,7 @@ function calculateScore(cnt) {
 // 下落补齐
 function fillEmptyTiles() {
     const { board, size, difficulty } = gameState;
-    let filled = false;
     const tiles = document.getElementsByClassName('tile');
-    // 每列从下往上
     for(let col = 0; col < size; col++) {
         let write = size - 1;
         for(let row = size - 1; row >= 0; row--) {
@@ -252,7 +283,6 @@ function fillEmptyTiles() {
             tiles[idx].textContent = board[idx];
             tiles[idx].classList.add('animate__fadeInDown');
             setTimeout(() => tiles[idx].classList.remove('animate__fadeInDown'), 300);
-            filled = true;
         }
     }
     setTimeout(() => {
@@ -284,7 +314,16 @@ function updateUI() {
     document.getElementById('score').textContent = gameState.score;
     document.getElementById('moves').textContent = gameState.movesLeft;
     document.getElementById('target').textContent = gameState.targetScore;
-    updateShuffleBtn();
+    // 更新进度条
+    const progressBar = document.getElementById('scoreProgress');
+    if (progressBar) {
+        let percent = 0;
+        if (gameState.targetScore > 0) {
+            percent = Math.min((gameState.score / gameState.targetScore) * 100, 100);
+        }
+        progressBar.style.width = percent + "%";
+    }
+    updateToolBtns();
 }
 
 // 检查游戏结束
@@ -311,7 +350,7 @@ function disableBoard() {
     }
 }
 
-// 游戏结束模态框（居中框内）
+// 游戏结束模态框
 function showGameOverModal(isWin) {
     if (isWin) {
         playAudio('win');
@@ -329,85 +368,95 @@ function showGameOverModal(isWin) {
     modal.classList.add('active');
 }
 
-// 检查当前棋盘是否还有可消除
-function hasPossibleMoves() {
-    const { board, size } = gameState;
-    for(let i = 0; i < board.length; i++) {
-        if ((i % size) < size - 1) {
-            [board[i], board[i+1]] = [board[i+1], board[i]];
-            if (checkMatches(true)) {
-                [board[i], board[i+1]] = [board[i+1], board[i]];
-                return true;
-            }
-            [board[i], board[i+1]] = [board[i+1], board[i]];
-        }
-        if (i + size < board.length) {
-            [board[i], board[i+size]] = [board[i+size], board[i]];
-            if (checkMatches(true)) {
-                [board[i], board[i+size]] = [board[i+size], board[i]];
-                return true;
-            }
-            [board[i], board[i+size]] = [board[i+size], board[i]];
-        }
-    }
-    return false;
+// ------------ 道具实现 ---------------
+
+function updateToolBtns() {
+    document.getElementById('shuffleCount').innerHTML = `<span class="tool-count-bg" style="background:#e84a5f;">${gameState.toolUsed.shuffle? '0':'1'}</span>`;
+    document.getElementById('addStepCount').innerHTML = `<span class="tool-count-bg" style="background:#e84a5f;">${gameState.toolUsed.addStep? '0':'1'}</span>`;
+    document.getElementById('undoCount').innerHTML = `<span class="tool-count-bg" style="background:#e84a5f;">${gameState.toolUsed.undo? '0':'1'}</span>`;
+
+    document.getElementById('shuffleBtn').disabled = gameState.toolUsed.shuffle || gameIsOver || gameState.score < 50;
+    document.getElementById('addStepBtn').disabled = gameState.toolUsed.addStep || gameIsOver || gameState.score < 70;
+    // 撤销不再扣分，所以无分数判断
+    document.getElementById('undoBtn').disabled = gameState.toolUsed.undo || gameIsOver || !gameState.prevState;
+
+    const tip = document.getElementById('shuffleTip');
+    if (tip) tip.textContent = '';
 }
 
-// 小道具：打乱棋盘
+// 打乱道具
 function shuffleBoard() {
-    if (gameState.shuffling || gameIsOver) return;
-    if (gameState.movesLeft <= 0) return;
-    if (gameState.score < Math.ceil(gameState.targetScore * 0.1)) {
+    if (gameState.shuffling || gameIsOver || gameState.toolUsed.shuffle) return;
+    if (gameState.score < 50) {
         showToolTip('分数不足，无法打乱！');
         return;
     }
-    // 判断是否无可消除才允许打乱
-    if (hasPossibleMoves()) {
-        showToolTip('还有可消除的组合，不能打乱！');
-        return;
-    }
-    gameState.shuffling = true;
+    gameState.toolUsed.shuffle = true;
     let arr = gameState.board.filter(x=>x);
-    // 打乱
     for (let i = arr.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    // 重新分配到棋盘
     for(let i=0;i<arr.length;i++) gameState.board[i]=arr[i];
-    // 更新DOM
     const tiles = document.getElementsByClassName('tile');
     for(let i=0;i<arr.length;i++) {
         tiles[i].textContent = arr[i];
         tiles[i].classList.add('animate__flash');
         setTimeout(() => tiles[i].classList.remove('animate__flash'), 400);
     }
-    // 扣分
-    gameState.score -= Math.ceil(gameState.targetScore * 0.1);
+    gameState.score -= 50;
     if (gameState.score < 0) gameState.score = 0;
     updateUI();
     setTimeout(()=>{
-        // 打乱后补齐可能三连
         if (checkMatches()) {
             setTimeout(fillEmptyTiles, 360);
         }
         gameState.shuffling = false;
-        updateShuffleBtn();
+        updateToolBtns();
     }, 400);
 }
 
-// 更新道具按钮状态和提示
-function updateShuffleBtn() {
-    const btn = document.getElementById('shuffleBtn');
-    const tip = document.getElementById('shuffleTip');
-    let cost = Math.ceil(gameState.targetScore * 0.1);
-    if (btn) {
-        btn.disabled = !(gameState.movesLeft > 0 && !hasPossibleMoves() && gameState.score >= cost && !gameIsOver);
+// 加步数道具
+function addStep() {
+    if (gameState.toolUsed.addStep || gameIsOver) return;
+    if (gameState.score < 70) {
+        showToolTip('分数不足，无法加步！');
+        return;
     }
-    if (tip) {
-        tip.textContent = `（无可消除时可用，消耗${cost}分）`;
-    }
+    gameState.toolUsed.addStep = true;
+    gameState.score -= 70;
+    if (gameState.score < 0) gameState.score = 0;
+    gameState.movesLeft += 3;
+    playAudio('swap');
+    updateUI();
+    showToolTip('已增加3步');
+    setTimeout(updateToolBtns, 1600);
 }
+
+// 撤销道具，不扣分
+function undoMove() {
+    if (gameState.toolUsed.undo || gameIsOver) return;
+    if (!gameState.prevState) {
+        showToolTip('暂无可撤销的操作');
+        return;
+    }
+    // 不再扣分
+    gameState.toolUsed.undo = true;
+
+    gameState.board = [...gameState.prevState.board];
+    gameState.score = gameState.prevState.score;
+    gameState.movesLeft = gameState.prevState.movesLeft;
+
+    const tiles = document.getElementsByClassName('tile');
+    for(let i=0;i<gameState.board.length;i++) {
+        tiles[i].textContent = gameState.board[i];
+    }
+    playAudio('swap');
+    updateUI();
+    showToolTip('已撤销上一步并加1步');
+    setTimeout(updateToolBtns, 1600);
+}
+
 function showToolTip(msg) {
     const tip = document.getElementById('shuffleTip');
     if (!tip) return;
@@ -415,6 +464,25 @@ function showToolTip(msg) {
     tip.style.color = "#e84a5f";
     setTimeout(() => {
         tip.style.color = "#ff8b6a";
-        updateShuffleBtn();
+        updateToolBtns();
     }, 1800);
 }
+function showToolTip(msg) {
+    const modal = document.getElementById('toolTipModal');
+    const msgSpan = document.getElementById('toolTipModalMsg');
+    if (!modal || !msgSpan) return;
+    msgSpan.textContent = msg;
+    modal.classList.add('active');
+    setTimeout(() => {
+        modal.classList.remove('active');
+        updateToolBtns();
+    }, 1000); // 1秒后关闭
+}
+
+// 难度对应参数
+const size = 6; // 6x6、8x8、10x10等
+const tileSize = 52; // 或你想要的格子像素
+
+const board = document.getElementById('board');
+board.style.setProperty('--board-size', size);
+board.style.setProperty('--tile-size', tileSize + 'px');

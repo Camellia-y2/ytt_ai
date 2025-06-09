@@ -6,6 +6,8 @@ function TodoForm(props){
         // 阻止默认提交行为， 不刷新页面
         e.preventDefault();
         onAdd(text);
+         // 提交后清空输入框
+         setText('');
         // console.log(e);
         // console.log(e.target.value);
         // 修改todos? 因为是它的父组件所以改不了，只能打报告
@@ -18,7 +20,7 @@ function TodoForm(props){
             <input
                 type="text"
                 placeholder="请输入待办事项"
-                value={text}
+                // value={text}
                 onChange={handleChange}
             />
             <button type="submit">添加</button>

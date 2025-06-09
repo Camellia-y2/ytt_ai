@@ -21,7 +21,7 @@ function TodoList() {
     // es6 解构 
     // const hi = useState('haha')[0];
     // const setHi = useState('haha')[1];
-    const [hi,setHi] = useState('haha');
+    // const [hi,setHi] = useState('haha');
     const [title,setTitle] = useState('Todo list')
     const [todos,setTodos] = useState([
         {
@@ -61,7 +61,7 @@ function TodoList() {
     
     return (
        <div className="container">
-            <h1 className="title">{title}  {hi}</h1>
+            <h1 className="title">{title}</h1>
              {/* 负责表单 */}
             <TodoForm onAdd = {handleAdd}/>
             {/* 负责列表 */}
