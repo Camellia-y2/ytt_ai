@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+<body>
+    <script>
+        "use strict";
+        // this 是函数运行后的 指针对象
+        var name = "windowsName";
+        var a = {
+            name: "楼老板",
+            fn: function(){
+                console.log(this);
+                console.log(this.name);
+            }
+        }
+        a.fn();// 作为对象的方法调用，指向对象（调用者）
+        var b = a.fn;
+        b();// 非严格模式下，作为普通函数调用 window.b() ，指向window, 答案是windowsName
+        // 严格模式下，普通函数调用this指向undefined
+    </script>
+</body>
+</html>

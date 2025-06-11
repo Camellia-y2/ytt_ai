@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箭头函数中的this</title>
+</head>
+<body>
+<script>
+var name = "windowsName";
+var a = {
+  name: "Tom",
+  func1: function() {
+    console.log(this.name)
+  },
+  func2: function() {
+    // this => a
+    // setTimeout(() => {
+    // //  this 没有 该省则省
+    // //  箭头函数没有自己的this，this指向外层的this
+    //   this.func1();
+    // }, 1000)
+
+    setTimeout(function() {
+      // 作为普通函数调用，this指向window
+      // this.func1();  windows上没有这个func1方法，报错
+      // 解决方法1：
+      // var that = this;
+      this.func1();
+    }, 1000)
+  }
+}
+a.func1();//Tom
+a.func2();//Tom
+</script>
+</body>
+</html>
