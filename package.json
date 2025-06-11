@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "@tensorflow/tfjs": "^4.22.0",
-    "animate.css": "^4.1.1"
-  }
-}

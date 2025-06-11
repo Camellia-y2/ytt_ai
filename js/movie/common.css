@@ -1,0 +1,31 @@
+main{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+.movie{
+    width: 300px;
+    margin: 1rem;
+    position: relative;
+}
+.movie img{
+    width: 100%;
+}
+.overview{
+    background-color: #fff;
+    padding: 2rem;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    min-height: 100%;
+    transform: translateY(101%);
+    /* // 相对于自身偏移量 */
+    overflow-y:auto;
+    transition: transform 0.3s ease-in;
+    /* 动画过渡效果 */
+}
+.movie:hover .overview{
+    transform: translateY(0);
+}
