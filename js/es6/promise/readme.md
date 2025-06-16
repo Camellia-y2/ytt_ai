@@ -22,4 +22,16 @@
 - p.then(()=>{
     就可以运行
 })
-- 我们把任务放到then
+- 我们把任务放到then里面就可以把执行的流程交给resolve来处理。
+
+## 控制执行流程的es6 套路
+  - new Promise()  // 请Promise类 控制异步流程专业
+  - ()=>{ // executor 耗时性的异步任务
+    异步任务 setTimeout  readFile fetch...
+  }
+  - then 原型方法
+  - resolve()  then 函数
+
+- promise  .then 升级到 async await
+  async 用于修饰函数，函数里面有异步任务
+  await 等待异步任务完成，异步变同步

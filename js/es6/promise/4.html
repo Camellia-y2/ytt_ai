@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        (async function(){
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve('hello world')
+                }, 1000)
+            })
+            const res = await p // 等异步任务执行完， 异步变同步
+            console.log(res) // 1s后打印hello world
+            console.log('1111') // 等“hello world:”打印完， 再打印“1111”
+        })()
+    </script>
+</body>
+</html>
