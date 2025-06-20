@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {
+            name: "Eve",
+
+            // 1.普通函数
+            // greet: function(){
+            //     console.log(`Hello, ${this.name}`);
+            //     console.log(this);//指向调用的对象obj,故输出Eve
+            // }
+
+            // 2.箭头函数
+            // greet: () => {
+            //     console.log(`Hello, ${this.name}`);
+            //     console.log(this);//指向全局对象，而全局对象没有name属性，所以是undefined
+            // }
+
+            // 问题
+            // greet只是个属性，因为定时器返回一个定时器的ID
+            // greet: window.setTimeout(() => {
+            //     console.log(`Hello, ${this.name}`);
+            //     console.log(this);//指向全局对象
+            //     },1000)
+
+            //解决方法1：
+            // greet: function () {
+            //     window.setTimeout(() => {
+            //         console.log(`Hello, ${this.name}`);
+            //         console.log(this);//指向obj
+            //     },1000)
+            //  }
+
+            //解决方法2：
+            greet: function () {
+                window.setTimeout(function() {
+                    console.log(`Hello, ${this.name}`);
+                    console.log(this);//指向obj
+                }.bind(obj),1000)//指向obj,没有Bind方法，就指向window
+             }
+        };
+
+        obj.greet(); // 输出 "Hello, undefined"（因为 this 来自外层，通常是全局对象或 undefined）
+    </script>
+</body>
+</html>

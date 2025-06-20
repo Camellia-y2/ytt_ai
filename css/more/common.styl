@@ -1,0 +1,32 @@
+.container
+    max-width 600px
+    margin 0 auto
+    padding 10px 20px
+    // background-color #007bff
+    color rgb(0, 0, 0)
+    text-decoration none
+    position relative
+    transition all .3s ease
+    h1
+        text-align center
+    p
+        line-height 1.6
+    .more
+        display inline-block
+        text-align center
+        &::before
+            content "qqq"
+            position absolute
+            bottom 0
+            left 0
+            width 100%
+            height 2px
+            background-color rgb(229, 80, 80)
+            transform scaleX(0)
+            transform-origin bottom right
+            transition transform 3s ease
+        &:hover::before
+            transform scaleX(1)
+            transform-origin bottom left
+
+        

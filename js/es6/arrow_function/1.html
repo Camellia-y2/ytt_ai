@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this指向</title>
+</head>
+<body>
+    <script>
+        // "use strict"
+        // 为什么换了严格模式就不能用了？？？？？？？？
+
+        // 普通函数
+        var name = '卢老板'
+        function fn(){
+            var name = '王老板'
+            console.log(this.name)
+        }
+        // fn();// 普通函数
+        // window.fn();// 不好
+
+        // 对象方法调用
+        let obj = {
+            name: '王老板',
+            fn: function(){
+                console.log(this.name)
+            }
+        }
+        // method 方法
+        obj.fn();// 王老板
+        const fn2 = obj.fn;  // 变量没有类型，只是一个指针，所以this会变
+        fn2();// 普通函数  
+    </script>
+</body>
+</html>
