@@ -5,10 +5,10 @@
 //     // const obj = Object.create(null); 
 //     const obj = {};
 
-//     // [].shift 方法 -> 取出数组的第一个元素，并返回这个元素，同时原数组长度减1
-//     // call 方法 -> 改变this指向，一开始指向前面的数组，后面改成了后面的对象
-//     // call 方法 -> 调用一个对象的一个方法，以另一个对象替换当前对象，借用数组的shift方法。
-//     // 因为 arguments 是类数组，没有真正数组的shift方法，所以可以使用 [].shift.call(arguments) 来取出第一个参数
+    // [].shift 方法 -> 取出数组的第一个元素，并返回这个元素，同时原数组长度减1
+    // call 方法 -> 改变this指向，一开始指向前面的数组，后面改成了后面的对象
+    // call 方法 -> 调用一个对象的一个方法，以另一个对象替换当前对象，借用数组的shift方法。
+    // 因为 arguments 是类数组，没有真正数组的shift方法，所以可以使用 [].shift.call(arguments) 来取出第一个参数
 //     // 2. 取出第一个参数，就是我们要传入的构造函数
 //     const Constructor = [].shift.call(arguments); 
 //    // 3. 把obj的原型指向构造函数的原型，这样obj就可以访问到构造函数中的属性和方法了
