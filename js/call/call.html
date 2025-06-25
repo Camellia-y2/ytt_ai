@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         function greetting(...args){
+            console.log(args,arguments[0],arguments[1]);
+            // console.log([...arguments],Array.from(arguments));
+            return `hello, I am ${this.name}`;
+        }
+        // console.log(Function.prototype,Function.__proto__);
+        // ...args 是 rest运算符
+        // 所有函数都是 Function 构造函数的实例
+        Function.prototype.myCall = function(context,...args){
+            console.log('///')
+            if (context === null || context === undefined) {
+                context = window;
+            }
+            //this? 指向 greetting 这个函数
+            console.log("this:"+this);
+            if (typeof this !== 'function') {
+                throw new TypeError('Function.prototype.myCall called on non-function');
+            }
+            // 函数要运行
+            // es6 新数据类型 Symbol 唯一绝对不会重复
+            const fnKey = Symbol('fn');
+            // this 运行 内部this -> context
+            // this 是 context 上面的方法的时候
+            // 不要覆盖 context 上面的属性
+            // JS对象的动态性
+            context[fnKey] = this;
+            // context[fnKey](); // 等价于 context.xxx()，其中 xxx 是 fnKey
+            console.log(context);
+            const result = context[fnKey](...args);
+            // context被污染了，删除属性
+            delete context[fnKey];
+            return result;
+        }
+        var obj = {
+            name : 'james',
+            fn : function(){
+               
+            }
+        }
+        console.log(greetting.myCall(obj,1,2,3));//hello, I am james
+    </script>
+</body>
+</html>

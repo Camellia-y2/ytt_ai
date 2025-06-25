@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: relative;
+            left: 0;
+            top: 0;
+            transition: left 1s ease-out;/*要发生改变才触发*/
+            /* 添加动画 */
+            /* animation: moveRight 2s; */
+        }
+        
+        /* @keyframes moveRight {
+            from { left: 0; }
+            to { left: 300px; }
+        } */
+        .active{
+            left: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <script>
+        // JS 执行时会暂停 HTML 解析和渲染，直到 JS 执行完毕，才会继续解析和渲染
+        // 为了避免这种情况，
+        // 1. 我们可以使用 setTimeout 来延迟 JS 的执行
+        // 2. 用生命周期   DOMContentLoaded 来延迟 JS 的执行，等 html css 下载完再执行，但是还不够
+        // html css 下载好了，单浏览器中的运行结合没有完成
+        document.addEventListener('DOMContentLoaded', () => {
+            // 当 DOM 解析完成后执行
+
+            // 设置一个定时器，延迟 0s 执行。可以。
+            // 将任务推迟到下一次时间循环，让出当前渲染时机。
+            // why? event loop 
+            // 虽然是0，但是 setTimeout 是一个宏任务，等待 html css 渲染完成，渲染优先
+            // 页面的渲染 比 setTimeout 优先
+            setTimeout(() => {
+                document.querySelector('.box').classList.add('active');
+            }, 0);
+            // document.querySelector('.box').classList.add('active');
+        })
+
+        // setTimeout(() => {
+            // document.querySelector('.box').classList.add('active');
+        // }, 1000);
+
+        // 没有过渡效果？？？why
+        
+        // document.querySelector('.box').classList.add('active');
+    </script>
+</body>
+</html>

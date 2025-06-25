@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // "use strict"
+        var name = "james";
+        // rest运算符
+        function greetting(...args){
+            console.log(args,arguments[0],arguments[1]);
+            // console.log([...arguments],Array.from(arguments));
+            return `hello, I am ${this.name}`;
+        }
+        const lj = {
+            name: "雷军"
+        }
+        // console.log(greetting.call(lj));//hello, I am 雷军
+        console.log(greetting.call(lj,[18,'抚州']));
+        // console.log(greetting.call(lj,18,'抚州'));
+
+        // 非严格模式下
+        // console.log(greetting.call());//hello, I am james
+        // console.log(greetting.call(null));//hello, I am james
+        // console.log(greetting.call(undefined));//hello, I am james
+        const fn = greetting.bind(lj,18,'抚州');//hello, I am 雷军
+        setTimeout(()=>{
+            fn();
+        },1000)
+    </script>
+</body>
+</html>

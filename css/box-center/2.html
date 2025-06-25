@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现元素居中</title>
+    <style>
+        body{
+            background-color: rgba(234, 255, 0, 0.174);
+            /* 实现元素居中 */
+            /* 记得给父元素设置高度，不然子元素无法居中，父元素的高度不设置只能由子元素撑起 */
+            height: 100vh;
+            display: flex;  
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            background-color: rgb(255, 146, 22);  
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
