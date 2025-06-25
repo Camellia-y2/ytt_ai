@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Chatbot</title>
+</head>
+<body>
+    <h1>流式输出</h1>
+    <div id="message"></div>
+    <script>
+        // 发送请求了
+        // html5 事件流对象 EventSource  给他支持 SSE 的地址
+        // SSE: Server Sent Events 服务器端发送事件
+        const source = new EventSource('/sse');
+        source.onmessage = function(event) {
+            // console.log(event.data);
+            // 接收到消息了
+            const message = event.data;
+            // 把消息追加到页面中
+            document.getElementById('message').innerHTML += message ;
+        }
+    </script>
+</body>
+</html>

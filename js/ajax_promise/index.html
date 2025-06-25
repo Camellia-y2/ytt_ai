@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 请求</title>
+    <!-- <script>
+        // 为什么不把js放在头部？
+        // 因为 JS 阻塞 渲染 所以还未对 html标签解析就执行，拿不到DOM节点 为null
+        // 但是也可以放在头部
+        // 我们可以在DOMContentLoaded生命周期事件中执行JS
+        // 为什么要在DOMContentLoaded事件中执行JS？
+        // 因为DOMContentLoaded事件是在HTML解析完成后触发的
+        // 比 window.onload 先触发，他有点晚。所以第一个更适合开发
+        //  document.addEventListener('DOMContentLoaded', () => {
+            console.log(document.getElementById('repos'));
+        // })
+    </script> -->
+</head>
+<body>
+    <ul id="repos"></ul>
+    <script>
+        document.addEventListener('DOMContentLoaded',async () => {
+            // fetch('https://api.github.com/users/shunwuyu/repos')
+            //     .then(res => res.json()) // 解析成JSON格式
+            //     .then(data => { 
+            //         // console.log(data);
+            //         // then的链式调用有点麻烦
+            //         document.getElementById('repos').innerHTML = data.map(item => { // map 方法返回一个新数组，新数组里面是对象的属性
+            //             return `<li>${item.name}</li>`; // 模板字符串
+            //         }).join(''); // join 方法将数组里面的元素用指定的分隔符连接起来，返回一个字符串
+            //     });
+
+            //优化
+            // 同步代码一样
+            // es6 新增的语法，async 异步 await 等待
+            // await 后跟着 promise 实例
+            // then 是 promise 的 api
+            // new Promise 可知  Promise是函数 fetch 实质是个特殊的 Promise 实例
+            // pending 状态 等待
+            // resolve() fulfilled 状态 成功
+            // reject() rejected 状态 失败
+            const result = await fetch('https://api.github.com/users/shunwuyu/repos');
+            const data = await result.json(); // 解析成JSON格式
+            console.log(data); // 打印到控制台
+            document.getElementById('repos').innerHTML = data.map(item => { 
+                            return `<li>${item.name}</li>`; 
+                         }).join(''); 
+            })  
+
+
+        // www.bilibili.com 网站地址，用户访问的
+        // https://api.github.com/users/shunwuyu  url 代表什么？  - API 接口地址
+        // 接口： 后端提供给前端使用的访问的地址
+        // fetch 是前端主动向后端请求数据的接口
+        // fetch 是一个异步操作，返回一个 promise 实例
+        
+        // - JSON格式 数据返回
+        // - 资源
+        // 前端 自己做主 实现前后端分离
+        // - 通过js fetch 主动拉取资源
+        // - web 2.0 动态页面
+    </script>
+</body>
+</html>
