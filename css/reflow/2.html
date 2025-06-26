@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #b52929;
+            margin: 10px;
+        }
+        .vis_hd {
+            /* visibility: hidden; */
+        }
+        .dis_none {
+            /* 渲染时直接把DOM节点移除 */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box dis_none">456</div>
+        <div class="box vis_hd">123</div>
+        
+        <!-- <div class="box">555</div> -->
+    </div>
+</body>
+</html>
