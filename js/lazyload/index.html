@@ -40,6 +40,8 @@
   // console.log(eles);
   const lazyload = function() {
     // 类数组 
+    // 类数组没有原生的forEach方法，直接调用会报错，需要先转换成数组
+    // 数组的forEach方法，会遍历数组，调用回调函数，每个图片都要调用一次回调函数
     Array.prototype.forEach.call(eles, function(item, index) {
       // console.log(item);
       // 没有值，退出 data-original item.dataset.original
