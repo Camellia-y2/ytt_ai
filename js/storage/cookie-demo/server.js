@@ -57,7 +57,7 @@ const server = http.createServer((req, res) => { // 回调函数 箭头函数
                     res.end('Server Error');
                     return;
                 }
-                res.writeHead(200,{'Content-Type':'text/css;charset=utf-8'});
+                res.writeHead(200,{'Content-Type':'text/javascript;charset=utf-8'});
                 res.end(content);
             })
         }
