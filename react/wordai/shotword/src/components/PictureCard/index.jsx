@@ -3,9 +3,12 @@ import React,{
 } from 'react';
 import './style.css'
 
-const PictureCard = () => {
+const PictureCard = (props) => {
+    console.log(props,'///');
+    const { uploadImage,word } = props;
+    console.log(uploadImage);
     const [imgPreview, setImgPreview] = useState('https://res.bearbobo.com/resource/upload/W44yyxvl/upload-ih56twxirei.png');
-    const [word, setWord] = useState('');
+
     const updateImageData = (e) => {
         // html5 的文件上传功能
         // const file = e.target.files[0];
@@ -25,6 +28,9 @@ const PictureCard = () => {
                 // console.log(reader.result)
                 // 响应式业务
                 setImgPreview(reader.result);
+                // 如果将图片数据交给父组件？
+                uploadImage(reader.result);
+                reader(reader.result);
             }
         })
     }
