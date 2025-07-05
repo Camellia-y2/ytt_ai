@@ -4,11 +4,13 @@ import {
   use
 } from 'react'
 import './App.css'
+import Timer from './components/Timer'
 
 function App() {
   const [count, setCount] = useState(0)
   const [num, setNum] = useState(0)
   const [repos, setRepos] = useState([])
+  const [isTimerOn, setIsTimerOn] = useState(true)
   // console.log('组件函数开始执行')
   // useEffect(() => {
   //   console.log('组件渲染完了')
@@ -58,6 +60,10 @@ function App() {
       }
     </ul>
 
+    {isTimerOn && <Timer />}
+    <button onClick={() => {
+      setIsTimerOn(!isTimerOn)
+    }}>toggle timer</button>
     </>
   )
 }
