@@ -56,5 +56,56 @@
         <input value={text} onChange={e=>setText(e.target.value)} /> react 坚持单向绑定 
         - 为何？？？
 
+- 本地存储
+    - localStorage 本地存储 html5
+      key:value 存储
+      setItem(key,value)
+      getItem(key)
+      removeItem(key)
+      clear()
+    - 挂载在window上
+    - BOM Browser Object Model 浏览器对象模型
+    - DOM Document Object Model 文档对象模型
+- 本地存储
+    - localStorage 和 cookie
+    - https 无状态，header 通过 cookie 带上，模拟有状态。
+    - cookie 每次都要携带，如果 cookie 太大，会影响 http 性能，最大4KB
+    - cookie 前端，后端都可以设置
+        - 可以设置过期时间
+    - localStorage 前端浏览器端设置，后端无法设置，最大大概 5MB
+    - localStorage 只能存储字符串，需要序列化和反序列化
+    - localStorage 生命周期，永久存储，除非手动删除
+
+    - IndexDB 数据库 最大 5GB
+
+## 自定义hooks 
+    - 自己定义的
+    - 以use开头
+    - 某一项功能
+       - 简单函数的封装
+       - 响应式的状态
+       - effect
+       - todos
+    - 自定义hooks
+        - 现代 react app 的架构一部分
+        - hooks目录
+            - 自定义hooks
+            - 框架做common部分
+            - 业务定制 ahooks
+        - 以 use 开头
+            - state effect 逻辑封装复用
+            - toggle addTodos deleteTodos
+            - 函数式编程思想的体现
+        - 组件更好的聚焦于模版渲染
+        - 全面hooks函数式编程
+
+- 两个遗憾
+    - ../../ 路径山路十八弯
+        - vite配置 alias 短路径 (绝对路径)
+    - toggle、delete 跨越组件层级有点多，useContext 解决跨组件层级传递
+
+
+       
+
         
 

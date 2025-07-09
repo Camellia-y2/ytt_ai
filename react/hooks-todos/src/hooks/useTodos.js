@@ -1,27 +1,13 @@
-import {
-    // 响应式状态hooks
-    useState // react 函数式编程 好用的以use 开头
-} from 'react'
-import TodoForm from "./TodoForm"
-import TodoList from "./TodoList"
-
-const Todos = () => {
-    // 数据流管理
-    // 父组件持有管理数据 props 传递数据 子组件通过props 自定义函数
-    // 通知父组件
-    const [todos,setTodos] = useState([
-        {
-            id:1,
-            text:'打豆豆',
-            isCompleted:false
-        },
-        {
-            id:2,
-            text:'算法比赛',
-            isCompleted:false
-        }
-    ])
-    // 新增todo
+import { 
+    useState,
+    useEffect
+} from "react";
+export const useTodos = () => {
+    const [todos,setTodos] = useState(
+        // localStorage.getItem()是同步的，如果数据过多，会造成阻塞，导致页面卡顿，因为这里数据少，就不优化了
+        JSON.parse(localStorage.getItem('todos')) 
+    )
+      // 新增todo
     const addTodo = (text) => {
         // setTodo 
         // 数据状态是对象的时候，一定要把原来的删掉（重新从头更新，用[]包着），因为是对象，引用的地址会发生改变
@@ -54,18 +40,17 @@ const Todos = () => {
             todo => todo.id !== id  // return true;
         ))
     }
-    return (
-        <div className='app'>
-            Todos
-            {/* 自定义事件 */}
-            <TodoForm onAddTodo={addTodo} />
-            <TodoList 
-                todos={todos} 
-                onToggle={onToggle} 
-                onDelete={onDelete}
-            />
-        </div>
-    )
-}
+   useEffect(()=>{
+    // console.log('todos change')
+    // 只接受字符串，如果不是，就会自动转换.toString()
+    localStorage.setItem('todos',JSON.stringify(todos))
+},[todos])
+   return {
+      todos, 
+      setTodos,
+      addTodo,
+      onToggle,
+      onDelete
+   }
+};
 
-export default Todos
