@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私有属性和方法的封装</title>
+</head>
+<body>
+    <script>
+        function Book(title,author,year){
+            // 对内 私有
+            // 对外
+            let _title = title; // _约定表示私有变量 内部可以使用 有利于可读性的编程风格
+            let _author = author;
+            let _year = year;
+            this.getTitle = function(){ // 对外提供方法 可以访问私有变量 闭包
+                return _title;
+            }
+            this.getAuthor = function(){ // 闭包
+                return _author;
+            }
+            this.getYear = function(){ // 闭包
+                return _year;
+            }
+            function getFullTitle(){
+                return `${_title} by ${_author}`// 私有方法 外部无法访问
+            }
+            this.getFullInfo = function(){
+                return `${getFullTitle()} published in ${_year}`// 公有方法 外部可以访问
+            }
+            // 类的开发者，和类的使用者，可能是两拨人
+           this.updateYear = function(newYear){ // 对外提供方法 可以修改私有变量 闭包
+                if(typeof newYear === 'number' && newYear > 0){
+                    _year = newYear;
+                }else{
+                    console.log('Invalid year');
+                }
+            }
+        }
+       let book = new Book('js高级程序设计','张三',2020)
+       console.log("1...."+book._title); // 私有属性 外部无法访问 undefined
+       console.log("2...."+book.getTitle());// 可以访问
+       console.log("3...."+book.getFullInfo());// 可以访问 
+       console.log("4...."+book.getFullTitle);// 私有属性（方法） 外部无法访问 undefined
+
+       book._year = 2025; // 不可以修改私有属性 输出Invalid year
+       console.log("5...."+book.updateYear(2021));// 可以访问
+       console.log("6...."+book.updateYear("123"));// 传入的格式错误，而打印要返回某值，没有显式地返回任何值，因此它的默认返回值是 undefined。
+       book.updateYear("123") // 输出Invalid year
+       console.log("7...."+book.getYear());// 2021
+       
+    </script>
+</body>
+</html>
