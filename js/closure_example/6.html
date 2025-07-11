@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包应用场景--绑定上下文</title>
+</head>
+<body>
+    <script>
+        // const person = {
+        //     name: "Alice",
+        //     sayHello: function () {
+        //         // this丢失
+        //         setTimeout(function () {
+        //             console.log("Hello, " + this.name); // 这里的this指向window对象，因为setTimeout是一个全局函数
+        //         }, 1000);
+        //     }
+        // }
+        // person.sayHello(); // 输出：Hello, undefined
+
+        // 解决方法1
+        // const person = {
+        //     name: "Alice",
+        //     sayHello: function () {
+        //         // this丢失
+        //         const that = this; // 保存this的引用
+        //         setTimeout(function () {
+        //             console.log("Hello, " + that.name); // 这里的this指向window对象，因为setTimeout是一个全局函数
+        //         }, 1000);
+        //     }
+        // }
+        // person.sayHello(); // 输出：Hello, Alice
+
+        // 解决方法2 箭头函数
+        // const person = {
+        //     name: "Alice",
+        //     sayHello: function () {
+        //         // this丢失
+        //         setTimeout(()=> { // 改成箭头函数，他没有自己的this，会向上查找作用域链，找到this指向person对象
+        //             console.log("Hello, " + this.name); // 这里的this指向window对象，因为setTimeout是一个全局函数
+        //         }, 1000);
+        //     }
+        // }
+        // person.sayHello(); // 输出：Hello, Alice
+
+        // 解决方法3 bind
+        const person = {
+            name: "Alice",
+            sayHello: function () {
+                // this丢失
+                setTimeout(function () {
+                    console.log("Hello, " + this.name); // 这里的this指向window对象，因为setTimeout是一个全局函数
+                }.bind(this), 1000);
+            }
+        }
+        person.sayHello(); // 输出：Hello, Alice
+    </script>
+</body>
+</html>

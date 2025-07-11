@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>立即执行函数 IIEF</title>
+</head>
+<body>
+    <script>
+        const Counter = (function (){
+            let count = 0; // 自由变量 私有
+            function increment (){
+                return ++count; // 闭包
+            }
+            function reset() {
+                count = 0; // 闭包
+            }
+
+            return function(){
+                return {
+                    getCount: function(){ // 闭包
+                        return count; // 闭包
+                    },
+                    increment: function(){
+                        return increment(); // 闭包
+                    },
+                    reset: function(){
+                        return reset(); // 闭包
+                    }
+                }
+            }
+        })();
+        const counter1 = Counter(); // 闭包
+        const counter2 = Counter(); // 闭包
+
+        console.log(counter1.getCount()); // 0
+        counter1.increment();
+        console.log("\\\\"+counter2.getCount()); // 1
+    </script>
+</body>
+</html>
