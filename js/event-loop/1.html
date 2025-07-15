@@ -9,10 +9,21 @@
     <script>
         // 一个 script 就是一个宏任务开始
         // 同步任务
-        // js 调用栈
+        // js 调用栈 同步任务执行完，栈清空
         // CPU计算
         // 异步任务 耗时性任务 任务放到某个地方？
         // 单线程
+        // 异步任务 宏任务，不那么紧急的任务 任务队列
+        console.log('script start');
+        setTimeout(() => {
+            console.log('setTimeout');
+        }, 0);
+        //then 异步 微任务,要紧急执行的任务 任务队列
+        Promise.resolve().then(() => {
+            console.log('promise');
+        })
+
+        console.log('script end');
     </script>
 </body>
 </html>

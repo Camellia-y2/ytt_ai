@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设计模式之单例模式</title>
+</head>
+<body>
+    <script>
+        /**
+         * Storage 本地存储类
+         * 单例模式 getInstance 静态方法
+         * @func getItem(key) 获取本地存储值
+         * @func setItem(key,value) 设置本地存储值
+        */
+
+        // 函数 + prototype 完成类 原型式的
+        // js 的原型式的 灵活、优雅、简单
+        // 面向对象都不用学 
+        // JAVA, C++不能理解
+        // es6 为了兼容 为了拥抱更多开发者 为了走向企业级大型项目开发
+        // 如何让class只会实例化一次？
+        // 使用全局变量
+        class Storage {
+            static instance;
+            //static instance 未初始化为 null 是因为在 JavaScript 中,
+            // 类的静态属性若仅声明而不初始化，其默认值就是 undefined 
+            // 对于单例模式而言， undefined 和 null 都能用于判断实例是否已创建。
+            constructor() {
+                console.log(this);
+            }
+            // 静态方法
+            static getInstance() {
+                // 返回一个实例
+                // 如果实例化过 返回之前的
+                // 第一次 就实例化
+                // 静态属性 在类上直接访问的方法 不需要实例化
+                // es6 class 语法糖
+                // Storage 对象 instance 
+                if(!Storage.instance) {
+                    Storage.instance = new Storage();   
+                }
+                return Storage.instance;
+            }
+            getItem(key) {
+                return localStorage.getItem(key); 
+            }
+            setItem(key, value) {
+                localStorage.setItem(key, value);
+            }
+        }
+        // 实现单例模式 性能好
+        // 干掉 new （一用new会开辟新空间） 又能拿到对象的实例
+        const storage3 = new Storage();
+        const storage4 = new Storage();
+        storage3.setItem('name', 'q老板');
+        console.log("new:" + storage4.getItem('name')); // q老板
+        // 这里操作的是浏览器全局的 localStorage，不是某个对象内部的状态
+
+        // 静态方法 getInstance()  属于类的方法 不用实例化
+        // public private getItem setItem 属于实例的方法 所以还是需要实例化 详见getInstance
+        const storage1 = Storage.getInstance();
+        const storage2 = Storage.getInstance();
+
+        // 引用
+        // es6 用 class语法糖 来构建类 本质还是原型式的
+        // 如何让它变成 true
+        console.log(storage1 === storage2); // false
+
+        storage1.setItem('name', '卢老板');
+        console.log(storage2.getItem('name')); // 卢老板
+    </script>
+</body>
+</html>
