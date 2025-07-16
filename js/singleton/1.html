@@ -65,7 +65,7 @@
         // 引用
         // es6 用 class语法糖 来构建类 本质还是原型式的
         // 如何让它变成 true
-        console.log(storage1 === storage2); // false
+        console.log(storage1 === storage2); // false -》 true
 
         storage1.setItem('name', '卢老板');
         console.log(storage2.getItem('name')); // 卢老板

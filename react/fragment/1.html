@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档碎片</title>
+</head>
+<body>
+    <ul id="list"></ul>
+    <script>
+        const items = [
+            {
+                id: 1,
+                title: 'q1',
+                content: 'q1的内容'
+            },
+            {
+                id: 2,
+                title: 'q2',
+                content: 'q2的内容'
+            },
+            {
+                id: 3,
+                title: 'q3',
+                content: 'q3的内容'
+            }
+        ]
+
+        const container = document.getElementById('list');
+        // const oDiv = document.createElement('div');
+        // 性能优化，文档碎片，只触发一次重绘重排
+        // 文档碎片是一个轻量级的文档对象，它的作用是作为一个容器，
+        // 用于存储文档中的元素，而不会直接将这些元素添加到文档中。
+        // 当我们需要批量添加元素到文档中时，
+        // 可以先将这些元素添加到文档碎片中，然后再将文档碎片添加到文档中。
+        // 这样可以减少页面的重绘和重排，提高页面的性能。
+        const fragment = document.createDocumentFragment();
+        items.forEach(item => {
+            const wrapper = document.createElement('div')
+            const title = document.createElement('h3')
+            const desc = document.createElement('p')
+            title.textContent = item.title;
+            desc.textContent = item.content;
+            wrapper.appendChild(title)
+            wrapper.appendChild(desc)
+            fragment.appendChild(wrapper)
+        })
+        // 批量挂载更新，减少重绘重排次数
+        container.appendChild(fragment)
+    </script>
+</body>
+</html>

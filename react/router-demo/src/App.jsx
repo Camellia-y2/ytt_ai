@@ -7,7 +7,8 @@ import { useState } from 'react'
 import './App.css'
 import Home from './pages/Home' // 首页
 import About from './pages/About' // 首页
-
+import UserProfile from './pages/UserProfile' // 个人中心
+ 
 function App() {
 
   return (
