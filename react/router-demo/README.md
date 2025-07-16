@@ -61,11 +61,21 @@
   /
   /about
   - 有点足够简单
-  - 前后端耦合
-  - 逻辑，数据库，套页面 MVC开发方式
+  - 前后端耦合 后端要写前端的页面
+  - 浪费沟通时间
+  - 逻辑，数据库，套页面 MVC开发方式 Modal(数据) View(视图) Controller(控制器)
   - 不在以返回页面为目的
-  - /api/user/:id
+  - /api/user/:id 接口 返回 JSON 数据
 
-- 前后端分离
-  - 前端也有了路由
+- 前后端分离 MVVM Model(fetch api)  View(JSX) ViewModel(视图模型层 useState,数据通过数据绑定去到JSX中) 
+  - 前后端联调 api开发文档  约定
+  - 前后端分离开发，以API开发文档为约定
+  - 前端当家做主
+  - 前端也有了路由 react-router-dom
+    /user/:id path 页面级别组件
   - html/css/js react 框架
+    useState
+    useEffect
+      fetch 后端 api 接口 拿到数据
+      完成web应用
+      PC/Moblie/App/小程序/桌面端 大前端
