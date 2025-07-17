@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>history SPA</title>
+</head>
+<body>
+    <h2>SPA路由模拟</h2>
+    <button onclick="navigate('/home')">首页</button>
+    <button onclick="navigate('/about')">关于</button>
+    <button onclick="navigate('/contact')">联系</button>
+    <!-- 登录页面不可以放入栈，因为已登录了再返回登录页就没有意义了 -->
+    <button onclick="navigate('/login')">登录</button>
+    <button onclick="replace('/pay')">支付</button>
+    <a href="https://www.zhihu.com">知乎</a>
+    <div id="view">当前视图</div>
+    <script>
+        // 在这里实现热更新
+        function render(path){
+            // 渲染视图
+            document.getElementById('view').textContent = `当前视图：${path}`
+        }
+        function replace(path){
+            history.replaceState({path},null,path)
+            render(path)
+        }
+        function navigate(path){
+            // path 含义，持有数据状态 state
+            // history.pushState() 方法向浏览器的会话历史栈增加了一个条目，且不更新
+            // 入 history 栈
+            // 它可以让你在不重新加载页面的情况下更改 URL，并保持浏览器的前进/后退按钮正常工作
+            history.pushState({path},null,path)
+            // 第一个参数：一个包含状态信息的对象。这个对象可以是任何类型，通常包含了页面的状态信息，比如 URL 路径、查询参数等。
+            // 第二个参数：一个字符串，作为新的历史记录条目的标题。通常用于描述新状态的简短描述，通常不用于显示给用户。一般为null或''
+            // 第三个参数：这个 URL 不需要真实存在，也不会触发页面加载。
+            render(path)
+        }
+        // 监听前进后退事件
+        window.addEventListener('popstate',(e)=>{
+            console.log('pop state fired:',e.state);
+            render(e.state ?.path || location.pathname)
+        })
+    </script>
+</body>
+</html>
