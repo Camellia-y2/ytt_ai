@@ -1,5 +1,5 @@
 const arr = [1, 2, 3, 4, 5];
-// 可迭代对象 比技术循环好理解 可读性好
+// 可迭代对象 比技术循、环好理解 可读性好
 for (let item of arr) { // 迭代器
     console.log(item); //
 }

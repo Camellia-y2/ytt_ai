@@ -30,5 +30,24 @@
         入口文件 
         添加路由功能 spa 
         添加全局应用状态管理
-   - 
+
+   - RepoList 功能模块
+      - params 解析
+         - 使用 useParams 拿到动态参数对象
+         - 不要放到 useEffect 中，要放到主组件的最顶层
+            React 对 Hook 的调用有三条基本规则（来自官方文档）：
+               1. 只能在函数组件或自定义 Hook 中调用 Hook。
+               2. 不能在条件语句、循环、嵌套函数中调用 Hook。
+               3. Hook 的调用顺序在每次渲染中必须保持一致。
+         - 校验 id：不要相信用户的任何提交
+         - id校验失败，返回首页：使用hook: useNavigate -> navigate('/') -> 放到useEffect中
+            因为 navigate() 是一个**副作用操作**，它应该在组件**渲染完成之后执行**，而不是在渲染过程中执行。所以应该把它放在 useEffect 中，而不是组件的主函数体中。
+   - 组件开发模式
+      - UI 组件（JSX）
+      - 自定义hooks useRepos... 方便
+      - 状态管理 应用层级 应该归 context 来管
+         - repos loading error => context value 交给useContext管
+         - useReducer 提供 reducer 函数
+      - 
+
 
