@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>登录弹窗单例实现</title>
+  <style>
+    #modal {
+      width: 300px;
+      height: 200px;
+      line-height: 200px;
+      text-align: center;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      border: 1px solid #000;
+      background: #fff;
+      z-index: 999;
+      display: none;
+    }
+    #mask {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 998;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button id="open1">打开弹窗 - 方式一</button>
+  <button id="open2">打开弹窗 - 方式二</button>
+  <button id="open3">打开弹窗 - 方式三</button>
+  <button id="close">关闭弹窗</button>
+
+  <script>
+    // 我们将在这里分别实现三种方式
+
+    // 方式一：使用闭包+IIFE
+    const ModalSingleton1 = (function () {
+    let modal = null;
+        return function () {
+            if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'modal';
+            modal.innerHTML = '我是一个 Modal（方式一）';
+            document.body.appendChild(modal);
+            console.log('方式一：创建了弹窗');
+            }
+            return modal;
+        };
+    })();
+
+    // 方式二：使用类+静态属性（面向对象写法）
+    class ModalSingleton2 {
+    static _instance = null;
+
+    constructor() {
+        if (ModalSingleton2._instance) {
+            return ModalSingleton2._instance;
+        }
+            this.modal = document.createElement('div');
+            this.modal.id = 'modal';
+            this.modal.innerHTML = '我是一个 Modal（方式二）';
+            document.body.appendChild(this.modal);
+            console.log('方式二：创建了弹窗');
+
+            ModalSingleton2._instance = this;
+        }
+
+        getModal() {
+            return this.modal;
+        }
+    }
+
+    // 方式三：模块模式—— 模拟模块化封装
+    const ModalSingleton3 = (function () {
+    let modal = null;
+
+    function createModal() {
+        modal = document.createElement('div');
+        modal.id = 'modal';
+        modal.innerHTML = '我是一个 Modal（方式三）';
+        document.body.appendChild(modal);
+        console.log('方式三：创建了弹窗');
+    }
+
+    return {
+        show() {
+        if (!modal) createModal();
+        modal.style.display = 'block';
+        },
+        hide() {
+        if (!modal) createModal();
+        modal.style.display = 'none';
+        }
+    };
+    })();
+
+    document.getElementById('open1').addEventListener('click', () => {
+        const modal = new ModalSingleton1();
+        modal.style.display = 'block';
+    });
+
+    document.getElementById('open2').addEventListener('click', () => {
+        const modal = new ModalSingleton2().getModal();
+        modal.style.display = 'block';
+    });
+
+    document.getElementById('open3').addEventListener('click', () => {
+        ModalSingleton3.show();
+    });
+
+    document.getElementById('close').addEventListener('click', () => {
+        const modal1 = new ModalSingleton1();
+        modal1.style.display = 'none';
+
+        const modal2 = new ModalSingleton2().getModal();
+        modal2.style.display = 'none';
+
+        ModalSingleton3.hide();
+    });
+  </script>
+</body>
+</html>
