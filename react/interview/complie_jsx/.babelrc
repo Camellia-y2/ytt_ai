@@ -1,5 +1,6 @@
 {
     "presets": [
-        "@babel/preset-react"
+      "@babel/preset-env",        // 编译 ES6+ 到 ES5
+      "@babel/preset-react"       // 编译 JSX 和 React 语法
     ]
-}
+  }

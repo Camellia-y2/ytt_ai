@@ -51,8 +51,8 @@ function App() {
   return (
     <ul>
       {
-        todos.map((todos)=>(
-          <li key={todos.id}>{todos.title}</li>
+        todos.map((todo)=>(
+          <li key={todo.id}>{todo.title}</li>
         ))
       }
     </ul>
