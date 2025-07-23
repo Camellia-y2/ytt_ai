@@ -29,9 +29,12 @@ function App() {
     <NavBar />
     <Suspense fallback={<div>loading</div>}>
     <Routes>
-      <Route path='/' element={<Home />} />
+      {/* 当用户访问 / 时，会渲染 Home 组件 */}
+      <Route path='/' element={<Home />} /> 
       <Route path='/login' element={<Login />} />
       <Route path='/pay' element={
+        // 这是一个自定义的高阶组件，用于保护需要登录才能访问的路由（如 /pay）。
+        // 如果用户未登录，会被重定向到登录页面。
         <RequireAuth>
           <Pay />
         </RequireAuth>

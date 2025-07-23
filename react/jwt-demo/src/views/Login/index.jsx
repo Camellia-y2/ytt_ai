@@ -13,18 +13,30 @@ const Login = () => {
     const passwordRef = useRef();
     const {login} = useUserStore();
     const navigate = useNavigate();
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const username = usernameRef.current.value;
-        const password = passwordRef.current.value;
+
+        const username = usernameRef.current.value.trim();
+        const password = passwordRef.current.value.trim();
+
         if(!username || !password){
             alert('请输入用户名和密码');
             return;
         }
-        login({username, password})
-        setTimeout(()=>{
-            navigate('/')
-        },1000) // 登录成功跳转至首页
+        try {
+            // 调用登录方法
+            await login({ username, password });
+
+            // 只有登录成功才会执行到这一步
+            setTimeout(()=>{
+                navigate('/')
+            },1000) // 登录成功跳转至首页
+
+        } catch (error) {
+            // 捕获错误，提示用户
+            const errorMsg = error.message || '登录失败，请检查用户名或密码';
+            alert(errorMsg); 
+        }
     }
     return (
         <>

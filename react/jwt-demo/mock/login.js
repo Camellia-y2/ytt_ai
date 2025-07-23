@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-
+// mock.js 模拟后端接口逻辑
 // 安全性 编码的时候加密
 // 解码的时候用于解密
 // 加盐
@@ -29,7 +29,7 @@ export default [
             }, secret, {
                 expiresIn: 86400 // 过期时间
             })
-            console.log(token,'-----');
+            console.log('mock,jwt:'+token);
             return {
                 token,
                 data: {
