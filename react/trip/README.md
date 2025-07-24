@@ -98,5 +98,35 @@ Readme.md 很重要 方便面试官
     - 频繁的单位 260/75... 换算
     - 自动换算？ 
         postcss 插件 + postcss-pxtorem
+        postcss 是 css 预编译器，很强大
+        vite会自动读取 postcss.config.js 将css内容编译
+        px->rem
 
 ## git 提交规范
+- 移动端适配等项目初始化
+## 功能模块
+- UI 组件库
+    - react-vant 第三方组件库 70%的组件已经有了，不用写
+    - 选择适合自己业务的UI组件库 或者公司内部的组件库
+- 配置路由及懒加载
+    - 懒加载
+    - 路由守卫
+    - Layout组件
+        - 嵌套路由Outlet 分组路由配置
+        - 网页有几个模板 Layout组件
+            - Route 不加path 对应的路由自动选择
+            - 主模板 MainLayout tabBar
+            - 空模板 BlankLayout
+    - tabbar
+        - react-vant + @react-vant/icons
+        - value + onChange 响应式
+        - 直接点击链接分享 active 的设置
+
+- 自定义hooks
+    - useTitle 自定义页面标题 （一定要设置）
+
+- es6特性使用
+    tabbar 的高亮
+    - arr.findIndex
+    - arr.startsWith
+    - promise
