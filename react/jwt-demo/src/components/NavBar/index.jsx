@@ -17,7 +17,7 @@ const NavBar = () => {
             {
                 isLogin ? (
                 <>
-                    <span>欢迎：{user?.username || '用户'}</span>&nbsp;&nbsp;
+                    <span>欢迎：{user.username}</span>&nbsp;&nbsp;
                     <button onClick={logout}>Layout</button>
                 </>
                 ) : (

@@ -13,7 +13,8 @@ const RequireAuth = ({children}) => {
     const navigate = useNavigate(); // 用于导航
     const { pathname } = useLocation(); // 获取当前路径
     useEffect(()=>{
-        if(!isLogin) {
+        if(!isLogin) { 
+            alert('请先登录');
             navigate('/login', { from: pathname})
             // 检测到未登录，会将用户重定向到登录页面（/login），
             // 并将当前路径（/pay）作为参数（from）传递给登录页面。
@@ -23,7 +24,7 @@ const RequireAuth = ({children}) => {
                 如果存在 from 参数，则在登录成功之后使用 navigate(from) 跳转到用户原本想访问的页面。
                 如果不存在 from 参数，则默认导航到主页或用户仪表盘等。 */
         }
-    },[isLogin])
+    },[isLogin, navigate, pathname]);
 
     return (
         <>

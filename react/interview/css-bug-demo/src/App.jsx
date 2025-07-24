@@ -2,7 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import AnotherButton from './components/AnotherButton'
 import Button from './components/Button'
-// import 运行 路由懒加载
+
+// 与import有关，谁在上面就先加载
 
 function App() {
 

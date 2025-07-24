@@ -22,7 +22,7 @@ const WrapperGuang = forwardRef(Guang); // ref要传递的组件作为参数传�
 function App() {
   // 父组件 持有ref
   const ref = useRef(null); // 默认的useRef不传递，考虑安全
-  console.log(ref.current);
+  console.log(ref.current); // null
   useEffect(() => {
     ref.current?.focus();
   }, [])
