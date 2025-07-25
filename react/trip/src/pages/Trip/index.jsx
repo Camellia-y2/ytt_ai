@@ -35,6 +35,7 @@ const Trip = () => {
       role:'assistant'
     }
   ])
+
   const handleChat =async()=>{  
     if(text.trim() === '') {
     Toast.info({

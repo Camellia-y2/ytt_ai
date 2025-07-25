@@ -130,6 +130,8 @@ Readme.md 很重要 方便面试官
     - 对各家模型比较感兴趣（openAI，deepseek，豆包，kimi，claude...） 升级为kimiChat , doubaoChat...灵活
         性能、能力、性价比
         随意切换大模型，通过参数抽象
+    - 文生图（AI生成头像）
+        - 优化prompt设计
 - 原子css
     - App.css里面添加通用样式
     - 各自模块里module.css 不影响别的组件

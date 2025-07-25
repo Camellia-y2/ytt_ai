@@ -5,6 +5,8 @@
 const DEEPSEEK_CHAT_API_URL = 'https://api.deepseek.com/chat/completions';
 const KIMI_CHAT_API_URL = 'https://api.moonshot.cn/v1/chat/completions';
 // console.log(process.env.VITE_DEEPSEEK_API_KEY, '------');
+
+// 聊天Chat AI
 export const chat = async (
     messages, 
     api_url = DEEPSEEK_CHAT_API_URL,
@@ -49,4 +51,14 @@ export const kimiChat = async (messages) => {
         'moonshot-v1-auto'
     )
     return res;
+}
+
+// AI生成头像
+export const generateAvatar = async (text) => {
+    // 设计prompt
+    const prompt = `
+        你是一位卡通动画设计师，需要为用户设计头像，主打奶龙风格。
+        用户的信息是${text}
+        要求有个性，有设计感。
+    `
 }
