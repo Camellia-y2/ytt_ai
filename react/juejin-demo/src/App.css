@@ -26,6 +26,46 @@
 .position-relative {
   position: relative;
 }
+.position-fixed {
+  position: fixed;
+}
 .cPointer {
     cursor: pointer;
+}
+
+.view-container {
+    height: 100vh;
+    background-color: #f2f3f5;
+}
+.container {
+  display: flex;
+  align-items: center;
+}
+.main-container {
+  height: 93vh; 
+}
+.main-header {
+  height: 7%;
+  width: 100%;
+  background-color: #fff;
+}
+/* 顶部header可见 */
+.visible {
+  visibility: visible;
+}
+.hidden{
+  visibility: hidden;
+}
+.app-open-button {
+  display: fixed;
+  bottom: 125px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: #007bff;
+}
+.active {
+  color: #007bff;
 }
