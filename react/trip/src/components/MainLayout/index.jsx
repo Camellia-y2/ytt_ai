@@ -58,7 +58,7 @@ const MainLayout = () => {
                 {tabs.map((tab, index) => (
                     <Tabbar.Item 
                         key={index} 
-                        icon={tab.icon}s
+                        icon={tab.icon}
                     > 
                         {tab.title}
                     </Tabbar.Item>
