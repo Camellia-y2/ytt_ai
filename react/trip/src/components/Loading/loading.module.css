@@ -19,11 +19,7 @@
 }
 .wrapper>div:nth-child(2) {
     /* 延迟执行 */
-    background-color: rgb(120, 9, 57);
     animation-delay: -0.7s;
-    position: relative;
-    left: 28px;
-    top:635px;
 }
 @keyframes loading {
     /* 1.4s 设计多少动作？ */

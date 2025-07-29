@@ -146,6 +146,14 @@ Readme.md 很重要 方便面试官
         一个元素按功能逻辑拆分成多个类，和原子一样
         元素的样式就可以由这些原子类组合而成
         样式复用的更好，以后几乎可以不用写样式
+- 用户体验优化
+    - 搜索建议， 防抖 + useMemo 性能优化
+    - 组件粒度划分 
+        React.memo + useCallback
+    - 懒加载
+    - 热门推荐 + 相关商品（产品）
+    - SPA 单页应用 Single Page Application
+    - 骨架屏 Skeleton 不用让用户等待
 ## 项目遇到过什么问题，怎么解决的？
 - chat messages 遇到message覆盖问题
 - 自定义hooks

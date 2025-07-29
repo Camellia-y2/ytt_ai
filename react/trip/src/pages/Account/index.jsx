@@ -7,14 +7,21 @@ import {
   Cell,
   CellGroup,
   ActionSheet,
-  Popup,
-  Loading,
+  Grid
 } from 'react-vant'
 import {
   ServiceO,
   FriendsO,
   StarO,
-  SettingO
+  SettingO,
+  AddO,
+  CartO,
+  ChatO,
+  FireO,
+  LikeO,
+  Search,
+  HomeO,
+  UserO,
 } from '@react-vant/icons'
 import styles from './account.module.css'
 import {
@@ -22,6 +29,17 @@ import {
 } from '@/llm'
 
 const Account = () => {
+  const gridData = [
+    { icon: <AddO />, text: '添加' },
+    { icon: <CartO />, text: '购物车' },
+    { icon: <ChatO />, text: '聊天' },
+    { icon: <FireO />, text: '热门' },
+    { icon: <LikeO />, text: '喜欢' },
+    { icon: <StarO />, text: '收藏' },
+    { icon: <Search />, text: '搜索' },
+    { icon: <HomeO />, text: '首页' },
+    { icon: <UserO />, text: '我的' }
+  ];
   const [userInfo, setUserInfo] = useState({
     nickname: '噜噜',
     level: '5级',
@@ -95,8 +113,20 @@ const Account = () => {
         onCancel={()=>setShowActionSheet(false)}
         onSelect={(e)=>handleAction(e)}
       >
-
       </ActionSheet>
+      {/* 九宫格 */}
+      <div className={styles.gridContainer}>
+        {
+          gridData.map((item, index) => {
+            return (
+              <div key={index} className={styles.gridItem}>
+                <div className={styles.icon}>{item.icon}</div>
+                <div className={styles.text}>{item.text}</div>
+              </div>
+            )
+          })
+        }
+      </div>
     </div>
   )
 }
