@@ -129,7 +129,32 @@ Readme.md 很重要 方便面试官
     - api
         - GoogleSuggest
     - localStorage
-    
+- 瀑布流
+    - 小红书等主流App的内容浏览用户体验产品
+        两列、图片高度不一致、落差感
+        滚动加载更多，图片懒加载
+    - 接口
+        /api/images?page=${n} 支持翻页
+        唯一id page + index
+        随机图片，高度随机
+    - images怎么放到两列中？ MVVM
+        数据驱动页面（2列） 奇偶页
+    - 如何加载更多？
+        盒子底部的元素 通过使用 IntersectionObserver 来监听
+        观察它是否出现在视窗，性能更好，使用了观察者模式
+    - key id 下拉刷新
+    - 使用intersectionObserver 再次图片懒加载
+- toast 组件封装
+    - 需要自定义，UI组件库不满足
+    - UI props
+    - JS 显示出来 跨层级通信
+        观察者
+    - mitt eventBus 事件总线
+        - 安装 pnpm i mitt
+        - 实例化 mitt()
+        - on(自定义事件的名字，callback)
+        - emit(自定义事件的名字，参数)
+        组件通过监听一个自定义事件，实现基于事件的组件通信
 ## 项目亮点与难点
 - 前端智能
     - chat 函数
@@ -154,16 +179,27 @@ Readme.md 很重要 方便面试官
     - 热门推荐 + 相关商品（产品）
     - SPA 单页应用 Single Page Application
     - 骨架屏 Skeleton 不用让用户等待
+
 ## 项目遇到过什么问题，怎么解决的？
 - chat messages 遇到message覆盖问题
+- 闭包陷阱问题
+    一次事件里，两次setMessages()
+- 升级瀑布流？
+    - 骨架屏 用户体验
+    - 奇偶images 两列分配可能有时会像天蚕脚一样，一边高度特别长，一边特别短，就会容易出现一边白屏，不好看，随机嘛
+        两个响应式数组，判断那一列的高度更少将新得到的img加入那个数组
+    - intersectionObserver 用了两次，重复，面向对象dry原则 则要封装？
+        hooks
 - 自定义hooks
     - useTitle 自定义页面标题 （一定要设置）
-
 - es6特性使用
     tabbar 的高亮
     - arr.findIndex
     - arr.startsWith
     - promise
+- 瀑布流随机数据生成
+    - Array.from({length:pageSize}, (_, i) => ({
+}))
 
 - 项目迭代
     - 功能由浅入深
