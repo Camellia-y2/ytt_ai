@@ -1,6 +1,6 @@
 import './App.css'
 import { useState } from 'react';
-import NameEditComponent from './components/NameEditComponent.tsx';
+// import NameEditComponent from './components/NameEditComponent';
 function App() {
   //js代码
   // const [name, setName] = useState("initialName");
@@ -12,7 +12,7 @@ function App() {
   }
   return (
     <>
-      <NameEditComponent useName={name} onChange={setUsernameState} />
+      {/* <NameEditComponent useName={name} onChange={setUsernameState} /> */}
     </>
   )
 }
