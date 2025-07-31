@@ -20,6 +20,7 @@ const Collection = lazy(() => import('@/pages/Collection'))
 const Trip = lazy(() => import('@/pages/Trip'))
 const Account = lazy(() => import('@/pages/Account'))
 const Detail = lazy(() => import('@/pages/Detail'))
+const Coze = lazy(() => import('@/pages/Coze'))
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
           <Route path='/collection' element={<Collection />} />
           <Route path='/trip' element={<Trip />} />
           <Route path='/account' element={<Account />} />
+          <Route path='/coze' element={<Coze />} />
         </Route>
      
         {/* 空的layout */}
