@@ -46,7 +46,6 @@ const MainLayout = () => {
             </div>
             {/* tabbar */}
             <Tabbar 
-            className={styles.themeColor}
                 value={active} 
                 onChange={
                     (key) => { 
@@ -57,7 +56,7 @@ const MainLayout = () => {
             >
                 {tabs.map((tab, index) => (
                     <Tabbar.Item 
-                        className={styles.tabItem}
+                        className={`${styles.tabItem} theme-color font-f`}
                         key={index} 
                         icon={tab.icon}
                     > 

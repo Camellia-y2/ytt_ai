@@ -16,7 +16,7 @@ const Search = lazy(() => import('@/pages/Search'))
 const Encyclopedia = lazy(() => import('@/pages/Encyclopedia'))
 const Assistant = lazy(() => import('@/pages/Assistant'))
 const Profile = lazy(() => import('@/pages/Profile'))
-
+const SmartImage = lazy(() => import('@/pages/SmartImage'))
 
 function App() {
 
@@ -36,6 +36,7 @@ function App() {
         {/* 不带有 tabBar 的layout */}
         <Route element={<SubLayout />}>
           <Route path='/search' element={<Search />} />
+          <Route path='/smartimage' element={<SmartImage />} />
         </Route>
        </Routes>
      </Suspense>
