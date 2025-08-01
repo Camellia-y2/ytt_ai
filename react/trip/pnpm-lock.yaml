@@ -20,9 +20,6 @@ importers:
       mitt:
         specifier: ^3.0.1
         version: 3.0.1
-      mockjs:
-        specifier: ^1.1.0
-        version: 1.1.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -66,6 +63,9 @@ importers:
       jwt:
         specifier: ^0.2.0
         version: 0.2.0
+      mockjs:
+        specifier: ^1.1.0
+        version: 1.1.0
       postcss:
         specifier: ^8.5.6
         version: 8.5.6
