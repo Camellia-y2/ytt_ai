@@ -10,6 +10,8 @@ import {
 } from 'react-router-dom'
 import MainLayout from '@/components/MainLayout'
 import SubLayout from '@/components/SubLayout'
+import useThemeStore from '@/store/themeStore';
+import { useEffect } from 'react';
 
 const Home = lazy(() => import('@/pages/Home'))
 const Search = lazy(() => import('@/pages/Search'))
@@ -19,6 +21,15 @@ const Profile = lazy(() => import('@/pages/Profile'))
 const SmartImage = lazy(() => import('@/pages/SmartImage'))
 
 function App() {
+ const { isDark } = useThemeStore();
+
+  useEffect(() => {
+    if (isDark) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [isDark]);
 
   return (
     <>

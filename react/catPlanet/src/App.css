@@ -27,8 +27,11 @@
   justify-content: space-between;
   width: 190px;
 }
-.theme-color{
+.theme-color {
   background-color: #f4cc03;
+}
+.dark .theme-color {
+  background-color: #0a84ff; /* 深色模式下变成蓝色 */
 }
 .fixed-loading {
   display: fixed;

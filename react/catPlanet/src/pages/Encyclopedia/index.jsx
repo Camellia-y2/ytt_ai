@@ -1,8 +1,12 @@
 // 百科
+import styles from './encyclopedia.module.css'
+import HeaderBox from '@/components/HeaderBox'
+
 const Encyclopedia = () => {
     return (
         <div>
-            <h1>百科</h1>
+            {/* 头部 */}
+            <HeaderBox />
         </div>
     )
 }

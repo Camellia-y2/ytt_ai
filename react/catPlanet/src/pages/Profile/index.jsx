@@ -6,9 +6,7 @@ import { useState, useEffect } from 'react';
 import { generateAvatar } from '@/llm';
 import {
   FaUserCircle,
-  FaStar,
   FaReceipt,
-  FaMapMarkerAlt,
   FaCommentDots,
   FaDog, 
   FaPaw, 
