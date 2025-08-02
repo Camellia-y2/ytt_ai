@@ -28,7 +28,8 @@
   width: 190px;
 }
 .theme-color {
-  background-color: #f4cc03;
+  /* background-color: #f4cc03; */
+  background-color: #f2f2f2;
 }
 .dark .theme-color {
   background-color: #0a84ff; /* 深色模式下变成蓝色 */
