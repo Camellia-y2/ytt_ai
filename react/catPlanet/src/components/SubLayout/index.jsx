@@ -3,9 +3,6 @@ const SubLayout = () => {
   return (
     <>
       <Outlet />
-      <div>
-        <h1>SubLayout</h1>
-      </div>
     </>
   )
 }

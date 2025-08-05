@@ -39,7 +39,7 @@ const generatePetImages = (page, pageSize = 10) => {
       title: `${petType}${activity}`,
       username: Mock.Random.pick(usernames),
       avatar: Mock.Random.image('100x100', Mock.Random.color(), '#fff', 'avatar'),
-      likes: Mock.Random.integer(10, 9999)
+      likes: Mock.Random.integer(0, 999)
     };
   });
 };
@@ -47,7 +47,7 @@ const generatePetImages = (page, pageSize = 10) => {
 // 模拟API接口
 export default [
   {
-    url: '/api/images',
+    url: '/petPlanet/images',
     method: 'get',
     response: ({ query }) => {
       const page = Number(query.page) || 1;
@@ -55,6 +55,47 @@ export default [
         code: 0,
         data: generatePetImages(page),
       };
+    }
+  },
+  {
+    url: '/petPlanet/search',
+    method: 'get',
+    timeout: 1000,
+    response:(req, res)=>{
+        const keyword = req.query.keyword;
+        let num = Math.floor(Math.random() * 10); //生成0-9的随机数
+        let list = [];
+        for(let i = 0; i < num; i++) {
+            const randomData = Mock.mock({
+                title: '@ctitle'
+            }) //Mock.mock 返回一个对象
+            console.log(randomData)
+            list.push(`${keyword}${randomData.title}`)
+        }
+        return {
+            code: 0,
+            data: list
+        }
+    }
+  },
+  {
+    url: '/petPlanet/hotlist',
+    method: 'get',
+    timeout: 1000,
+    response:(req, res)=>{
+        return {
+            code: 0,
+            data: [{
+                id: '101',
+                city: "北京"
+            },{
+                id: '102',
+                city: "上海"
+            },{
+                id: '103',
+                city: "福州"
+            }]
+        }
     }
   }
 ];

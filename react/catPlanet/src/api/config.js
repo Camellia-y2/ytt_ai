@@ -1,31 +1,16 @@
 import axios from 'axios';
 
 // 创建axios实例
-const instance = axios.create({
-  baseURL: '/api',
-  timeout: 5000
-});
+axios.defaults.baseURL = 'http://localhost:5173/petPlanet'
 
 // 请求拦截器
-instance.interceptors.request.use(
-  config => {
-    // 可以在这里添加token等认证信息
-    return config;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
+axios.interceptors.request.use((config) => {
+    // token
+    return config
+})
+// 响应拦截
+axios.interceptors.response.use((data) => {
+    return data.data
+})
 
-// 响应拦截器
-instance.interceptors.response.use(
-  response => {
-    // 只返回数据部分
-    return response.data;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
-
-export default instance;
+export default axios

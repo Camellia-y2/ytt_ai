@@ -14,7 +14,7 @@ import useThemeStore from '@/store/themeStore';
 import { useEffect } from 'react';
 
 const Home = lazy(() => import('@/pages/Home'))
-const Search = lazy(() => import('@/pages/Search'))
+const SearchPage = lazy(() => import('@/pages/SearchPage'))
 const Encyclopedia = lazy(() => import('@/pages/Encyclopedia'))
 const Assistant = lazy(() => import('@/pages/Assistant'))
 const Profile = lazy(() => import('@/pages/Profile'))
@@ -46,7 +46,7 @@ function App() {
      
         {/* 不带有 tabBar 的layout */}
         <Route element={<SubLayout />}>
-          <Route path='/search' element={<Search />} />
+          <Route path='/search' element={<SearchPage />} />
           <Route path='/smartimage' element={<SmartImage />} />
         </Route>
        </Routes>

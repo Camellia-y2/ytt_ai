@@ -1,12 +1,13 @@
 // 头部组件
 import styles from './headerBox.module.css'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import logo from '@/assets/logo.png'
 import { Search,WapNav } from '@react-vant/icons'
 import UtilityPopup from '@/components/UtilityPopup'
 import { useState, useEffect, useRef } from 'react'
 
 const HeaderBox = () => {
+    const navigate = useNavigate(); // 使用 useNavigate 钩子
     const [showUtilityPopup, setShowUtilityPopup] = useState(false) // 展示功能弹窗
     const popupRef = useRef(null) // 获取弹窗元素
 
@@ -39,7 +40,14 @@ const HeaderBox = () => {
                 </div>
                 {/* 图标导航 */}
                 <div className={styles.headerRight}>
-                    <NavLink to="/search"><Search className={styles.searchIcon} /></NavLink>
+                    <Search 
+                        className={styles.searchIcon} 
+                        onClick={()=>{
+                            setTimeout(()=>{
+                                navigate('/search');
+                            },500);
+                        }}
+                    />
                     <WapNav  className={styles.wapNavIcon} onClick={()=>{
                         if(!showUtilityPopup){
                             setShowUtilityPopup(true)

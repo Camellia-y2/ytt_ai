@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { getImages } from '../api/home';
+import { getImages } from '../api/images';
 
 export const useImageStore = create((set, get) => ({
   images: [],
