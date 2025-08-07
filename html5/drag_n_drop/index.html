@@ -77,35 +77,6 @@ for(const empty of empties) {
     empty.addEventListener('drop', dragDrop)
 }
 
-function dragStart() {
-    this.className += ' hold' 
-    setTimeout(() => this.className = 'invisible', 0)
-}
-
-function dragEnd() {
-    this.className = 'fill'
-}
-
-function dragOver(e) {
-    console.log('----------')
-    e.preventDefault()
-}
-
-function dragEnter(e) {
-    console.log('////')
-    e.preventDefault()
-    this.className += ' hovered'
-}
-
-function dragLeave() {
-    this.className = 'empty'
-}
-
-function dragDrop() {
-    this.className = 'empty'
-    this.append(fill)
-}
-
 function dragStart(e) {
     if(!e.target.classList.contains("fill")) {
         e.preventDefault()
