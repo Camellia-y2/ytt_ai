@@ -205,7 +205,12 @@ Readme.md 很重要 方便面试官
     - SPA 单页应用 Single Page Application
     - 骨架屏 Skeleton 不用让用户等待
     - 文件上传的preview 用 HTML5 的 FileReader 对象
-
+- 语音输入发表文章
+    - 字节的tts
+    - onMouseDown
+    - BOM html5
+    navigator.mediaDevices.getUserMedia({audio:true})
+    用户隐私，要授权  getLocation
 ## 项目遇到过什么问题，怎么解决的？
 - chat messages 遇到message覆盖问题
 - 闭包陷阱问题
@@ -245,3 +250,6 @@ Readme.md 很重要 方便面试官
         margin: auto
     - React.memo 无状态组件，不重新渲染
     - animation
+
+- AI 功能
+    智能前端（http 请求） + 工作流 + coze api + ai 全新工作链路 + 自动化Agent
