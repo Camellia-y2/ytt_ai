@@ -33,7 +33,7 @@ function App() {
     })
 
     const onMessageReceived = (e) => {
-      console.log(e, '来自主线程');
+      // console.log(e, '来自主线程');
       switch(e.data.status) {
         case 'initiate':
           // llm ready 了吗？
@@ -59,6 +59,12 @@ function App() {
         break;
         case 'ready':
           setReady(true);
+        break;
+        case 'complete':
+          setDisabled(false);
+          // 拿到调用地址
+          const blobUrl = URL.createObjectURL(e.data.output);
+          setOutput(blobUrl);
         break;
       }
     }
