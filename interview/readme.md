@@ -28,6 +28,7 @@
         - git branch 创建分支名
         - git checkout 切换分支
         - git check -b xxx 新建并切换到xxx分支
+        - git merge 分支名  合并分支
     - 常用命令
         - git pull origin main 拉取分支代码(每天上班前的动作)
         - git status 当前状态
