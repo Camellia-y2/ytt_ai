@@ -36,3 +36,8 @@
         - git add . 提交到暂存区
         - git commit -m "提交信息" 提交到本地仓库
         - git push origin xxx 推送分支代码到远程仓库
+    - 撤销（未add 只撤销工作区）
+    - 撤销（只add 不commit）
+        - git restore --staged 文件名  撤销add
+    - 撤销（add 了 commit了）
+        - git reset --hard HEAD^
