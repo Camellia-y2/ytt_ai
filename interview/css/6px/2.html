@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1px 问题</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: rgb(236, 240, 236);
+            position: relative;
+        }
+        .box::after {
+            content: ''; /*可以为空，但不能没有*/
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 10px;
+            background-color: black;
+            transform: scaleY(0.5); /*上下拍平，留下中间的0.5px，下面和上面一样的高度0.25px*/
+            transform-origin: center bottom; /*变换原点，默认是中心，现在要改成底部中心*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>
