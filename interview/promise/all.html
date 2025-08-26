@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const p1 = Promise.resolve('p1') // 会立即执行，但没有打印 
+        // 原因：resolve 是成功的，成功不会触发浏览器警告。
+        // 除非用 .then() 拿到结果并 console.log，否则看不到它。
+        p1.then(res => {
+            console.log('p1:', res)
+        })
+        const p2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('p2 延时一秒')
+            }, 1000)
+        })
+        const p3 = new Promise((resolve, reject)=> {
+            setTimeout(() => {
+                resolve('p3 延时两秒')
+            }, 2000)
+        })
+        const p4 = Promise.reject('p4 失败rejected') //  会立即执行，有打印 p4 失败rejected
+        const p5 = new Promise((resolve, reject)=> {
+            setTimeout(() => {
+                reject('p5 rejected 延时1.5秒') // p5 rejected 延时1.5秒
+            }, 1500)
+        })
+
+        //res: ['p1', 'p2 延时一秒', 'p3 延时两秒']
+        Promise.all([p1, p2, p3])
+            .then(res => {
+                console.log('res1:', res)
+            })
+            .catch(err => {
+                console.log('err1:', err)
+            })
+
+        // err2: p5 rejected 延时1.5秒
+        Promise.all([p1, p2, p5])
+            .then(res => {
+                console.log('res2:', res)
+            })
+            .catch(err => {
+                console.log('err2:', err) 
+            })
+
+        // err3: p4 失败rejected
+        Promise.all([p1, p4, p5])
+            .then(res => {
+                console.log('res3:', res)
+            })
+            .catch(err => {
+                console.log('err3:', err) 
+            })
+
+// Promise.race([p1, p2, p3, p4, p5])
+    </script>
+</body>
+</html>
