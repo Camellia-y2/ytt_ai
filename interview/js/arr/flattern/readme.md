@@ -29,13 +29,23 @@
       - includes:查找是否包含 遍历数组，判断是否有元素满足回调函数的条件，返回布尔值
 
     - concat:拼接
-    - join:转换为字符串
     - slice:截取
     - indexOf/lastIndexOf:查找
-    - every/some:判断
-    - filter:过滤
-    - reduce:归并
-
-
+    - 过滤
+        filter:过滤 遍历数组，返回所有使回调函数返回真值的元素组成的新数组
+    - 判断
+        every\some
+    - 迭代器
+        keys()：返回键名的遍历器
+        values()：返回键值的遍历器
+        entries()：返回键值对的遍历器
+        forEach()：使用回调函数遍历每个成员
+    - join 拼接 toString
+    - 归约 reduce
+    - 静态方法
+        Array.isArray()：判断是否为数组
+        Array.from()：将类数组对象或可遍历对象转换为数组
+        Array.of()：将参数转换为数组
+     
 - es6新增方法
 - 遍历/查找类/转换类/拼接类/统计类
