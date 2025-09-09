@@ -36,3 +36,22 @@
 - requestIdleCallback 时间不定， 16.67ms（刷帧）- 优先任务的耗时 = 本次执行时间
 - 没有fiber react组件一多，就会卡， fiber 解决性能问题，主要通过中断渲染，保障用户交互流畅，解决大型应用阻塞主线程的问题
 - fiber 节点，react 渲染的工作单元
+
+## Render 分成两个阶段
+- 渲染阶段 构建新的虚拟dom树， diff patches[]
+- 提交阶段 把差异应用到真实dom上
+
+## diff 算法
+- 两棵树做 diff，复杂度是 O(n^3) 的，因为每个节点都要去和另一棵树的全部节点对比一次，这就是 n 了，如果找到有变化的节点，执行插入、删除、修改也是 n 的复杂度。所有的节点都是这样，再乘以 n，所以是 O(n * n * n) 的复杂度。
+- diff 算法：同层级比较（时间复杂度O(n)） 
+    - ABCDE  EABCD
+    dom 开销比较大，需要对比每个节点的变化。
+    diff 算法除了考虑本身的时间复杂度之外，还要考虑一个因素：dom 操作的次数。
+    移动操作 比 新增 + 删除操作要少，所以diff算法会优先考虑移动操作。
+
+    ABEC   ABC
+    - 处理新增节点：（找不到相同key）
+        newChildren[i] => 如： const newItem = document.createElement('li') 当前新增
+        newChildren[i - 1] -> B
+        newChildren[i].nextSibling -> C
+        将新生成的节点E插入到C前面-> insertBefore(newChildren[i], newChildren[i].nextSibling)
