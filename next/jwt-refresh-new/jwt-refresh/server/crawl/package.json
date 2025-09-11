@@ -10,6 +10,8 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "x-crawl": "^10.1.0"
+    "dotenv": "^17.2.2",
+    "puppeteer": "^24.20.0",
+    "x-crawl": "^10.0.2"
   }
 }
