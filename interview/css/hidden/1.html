@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+  #myElement {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+  }
+  </style>
+</head>
+<body>
+  <button id="toggleVisibility">Toggle Visibility</button>
+  <button id="toggleOpacity">Toggle Opacity</button>
+  <div id="myElement"></div>
+  <p>123456</p>
+  <script>
+  const myElement = document.getElementById('myElement');
+  document.getElementById('toggleOpacity').addEventListener('click', function() {
+    myElement.style.opacity = myElement.style.opacity === '0' ? '1' : '0';
+  });
+
+  document.getElementById('toggleVisibility').addEventListener('click', function() {
+    myElement.style.visibility = myElement.style.visibility === 'hidden' ? 'visible' : 'hidden';
+  });
+
+  
+  myElement.addEventListener('click', function() {
+    alert('元素点击了');
+  })
+  </script>
+</body>
+</html>
